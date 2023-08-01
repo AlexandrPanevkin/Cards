@@ -1,11 +1,11 @@
-import { ComponentPropsWithoutRef, useState } from 'react'
+import { ChangeEvent, ComponentPropsWithoutRef, useState } from 'react'
 
 import { clsx } from 'clsx'
 
 import { Typography } from '../typography'
 
 import { CloseEye } from './icons/CloseEye.tsx'
-import { CloseIcon } from './icons/CloseIcon.tsx'
+// import { CloseIcon } from './icons/CloseIcon.tsx'
 import { Eye } from './icons/Eye.tsx'
 import { Search } from './icons/Search.tsx'
 import s from './text-field.module.scss'
@@ -14,6 +14,8 @@ export type TextFieldProps = {
   errorMessage?: string
   label?: string
   isSearch?: boolean
+  onValueChange?: (value: string) => void
+  value: string
 } & ComponentPropsWithoutRef<'input'>
 
 export const TextField = ({
@@ -22,11 +24,13 @@ export const TextField = ({
   type = 'text',
   errorMessage,
   placeholder,
+  onChange,
+  onValueChange,
   disabled,
+  value,
   ...rest
 }: TextFieldProps) => {
   const [passwordIsShown, setPasswordIsShown] = useState(false)
-  const [value, setValue] = useState('')
   const classNames = {
     root: s.root,
     container: s.container,
@@ -38,6 +42,9 @@ export const TextField = ({
     button: clsx(s.rightIcon, disabled && s.isDisable),
     focusVisible: s.focusVisible,
     error: clsx(s.error),
+  }
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onValueChange?.(e.target.value)
   }
 
   return (
@@ -52,7 +59,7 @@ export const TextField = ({
           value={value}
           placeholder={placeholder}
           disabled={disabled}
-          onChange={e => setValue(e.currentTarget.value)}
+          onChange={handleChange}
           {...rest}
         />
         {type === 'search' && (
@@ -60,11 +67,6 @@ export const TextField = ({
             <div className={classNames.search}>
               <Search />
             </div>
-            {value && (
-              <button className={classNames.rightIcon} onClick={() => setValue('')}>
-                <CloseIcon />
-              </button>
-            )}
           </span>
         )}
         {type === 'password' && (
