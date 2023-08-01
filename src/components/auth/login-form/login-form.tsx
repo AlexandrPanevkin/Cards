@@ -1,14 +1,17 @@
 import { useController, useForm } from 'react-hook-form'
 
 import { Card } from '../../card'
+import { Checkbox } from '../../checkbox'
 import { Button } from '../../ui/button'
 import { TextField } from '../../ui/text-field'
+import { Typography } from '../../ui/typography'
 
 import s from './login-form.module.scss'
 
 type FormValues = {
   email: string
   password: string
+  checkbox: boolean
 }
 
 export const LoginForm = () => {
@@ -30,12 +33,21 @@ export const LoginForm = () => {
     defaultValue: '',
   })
 
+  const {
+    field: { value: checkboxValue, onChange: handleCheckboxChange },
+  } = useController({
+    name: 'checkbox',
+    control,
+    defaultValue: false,
+  })
+
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }
 
   return (
     <Card>
+      <Typography className={s.signIn}>Sign In</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           value={emailValue}
@@ -49,8 +61,15 @@ export const LoginForm = () => {
           label={'email'}
           type={'password'}
         />
+        <div className={s.checkbox}>
+          <Checkbox checked={checkboxValue} onValueChange={handleCheckboxChange} />
+          <span className={s.rememberMe}> Remember me</span>
+        </div>
+
         <div className={s.submitButton}>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" fullWidth>
+            Submit
+          </Button>
         </div>
       </form>
     </Card>
