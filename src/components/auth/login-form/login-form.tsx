@@ -1,7 +1,10 @@
 import { useController, useForm } from 'react-hook-form'
 
+import { Card } from '../../card'
 import { Button } from '../../ui/button'
 import { TextField } from '../../ui/text-field'
+
+import s from './login-form.module.scss'
 
 type FormValues = {
   email: string
@@ -32,20 +35,24 @@ export const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        value={emailValue}
-        onValueChange={handleEmailChange}
-        label={'email'}
-        type={'text'}
-      />
-      <TextField
-        value={passwordValue}
-        onValueChange={handlePasswordChange}
-        label={'email'}
-        type={'password'}
-      />
-      <Button type="submit">Submit</Button>
-    </form>
+    <Card>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <TextField
+          value={emailValue}
+          onValueChange={handleEmailChange}
+          label={'email'}
+          type={'text'}
+        />
+        <TextField
+          value={passwordValue}
+          onValueChange={handlePasswordChange}
+          label={'email'}
+          type={'password'}
+        />
+        <div className={s.submitButton}>
+          <Button type="submit">Submit</Button>
+        </div>
+      </form>
+    </Card>
   )
 }
