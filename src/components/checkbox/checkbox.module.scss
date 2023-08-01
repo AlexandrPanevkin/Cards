@@ -1,0 +1,66 @@
+/* reset */
+button {
+  all: unset;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  color: var(--color-light-100);
+
+  &.disabled {
+    color: var(--color-dark-100);
+  }
+}
+
+.root {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid;
+  border-radius: 4px;
+
+  &:disabled {
+    cursor: initial;
+  }
+}
+
+.buttonWrapper {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  &:hover:not(.disabled) {
+    background-color: var(--color-dark-500);
+  }
+
+  &:focus:not(.disabled) {
+    background-color: var(--color-dark-100);
+  }
+
+  &:active:not(.disabled) {
+    background-color: var(--color-dark-100);
+  }
+
+  &.disabled {
+    cursor: initial;
+  }
+}
+
+.indicator {
+  width: 18px;
+  height: 18px;
+}
