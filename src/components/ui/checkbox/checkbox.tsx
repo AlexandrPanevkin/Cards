@@ -3,7 +3,7 @@ import { FC } from 'react'
 import * as CheckboxRadix from '@radix-ui/react-checkbox'
 import * as LabelRadix from '@radix-ui/react-label'
 
-import { Typography } from '../ui/typography'
+import { Typography } from '../typography'
 
 import s from './checkbox.module.scss'
 import checkboxChecked from './img/checked.svg'

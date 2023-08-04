@@ -1,8 +1,10 @@
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useController, useForm } from 'react-hook-form'
+import { z } from 'zod'
 
-import { Card } from '../../card'
-import { Checkbox } from '../../checkbox'
 import { Button } from '../../ui/button'
+import { Card } from '../../ui/card'
+import { Checkbox } from '../../ui/checkbox'
 import { TextField } from '../../ui/text-field'
 import { Typography } from '../../ui/typography'
 
@@ -14,11 +16,20 @@ type FormValues = {
   checkbox: boolean
 }
 
+const loginSchema = z.object({
+  email: z.string().nonempty().email(),
+  password: z.string().min(3),
+  rememberMe: z.boolean().default(false),
+})
+
 export const LoginForm = () => {
-  const { handleSubmit, control } = useForm<FormValues>()
+  const { handleSubmit, control } = useForm<FormValues>({
+    resolver: zodResolver(loginSchema),
+  })
 
   const {
     field: { value: emailValue, onChange: handleEmailChange },
+    formState: { errors },
   } = useController({
     name: 'email',
     control,
@@ -54,12 +65,14 @@ export const LoginForm = () => {
           onValueChange={handleEmailChange}
           label={'email'}
           type={'text'}
+          errorMessage={errors.email?.message}
         />
         <TextField
           value={passwordValue}
           onValueChange={handlePasswordChange}
           label={'email'}
           type={'password'}
+          errorMessage={errors.password?.message}
         />
         <div className={s.checkbox}>
           <Checkbox checked={checkboxValue} onValueChange={handleCheckboxChange} />

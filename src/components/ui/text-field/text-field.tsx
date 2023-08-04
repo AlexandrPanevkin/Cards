@@ -6,6 +6,7 @@ import { Typography } from '../typography'
 
 import { CloseEye } from './icons/CloseEye.tsx'
 // import { CloseIcon } from './icons/CloseIcon.tsx'
+import { CloseIcon } from './icons/CloseIcon.tsx'
 import { Eye } from './icons/Eye.tsx'
 import { Search } from './icons/Search.tsx'
 import s from './text-field.module.scss'
@@ -15,7 +16,7 @@ export type TextFieldProps = {
   label?: string
   isSearch?: boolean
   onValueChange?: (value: string) => void
-  value: string
+  value?: string
 } & ComponentPropsWithoutRef<'input'>
 
 export const TextField = ({
@@ -24,7 +25,6 @@ export const TextField = ({
   type = 'text',
   errorMessage,
   placeholder,
-  onChange,
   onValueChange,
   disabled,
   value,
@@ -67,6 +67,12 @@ export const TextField = ({
             <div className={classNames.search}>
               <Search />
             </div>
+            <button
+              className={classNames.rightIcon}
+              onClick={() => onValueChange && onValueChange('')}
+            >
+              <CloseIcon />
+            </button>
           </span>
         )}
         {type === 'password' && (
