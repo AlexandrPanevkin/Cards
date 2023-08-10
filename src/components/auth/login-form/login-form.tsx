@@ -4,7 +4,6 @@ import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
-import { Checkbox } from '../../ui/checkbox'
 import { TextField } from '../../ui/text-field'
 import { Typography } from '../../ui/typography'
 
@@ -45,7 +44,7 @@ export const LoginForm = () => {
   })
 
   const {
-    field: { value: checkboxValue, onChange: handleCheckboxChange },
+    // field: { value: checkboxValue, onChange: handleCheckboxChange },
   } = useController({
     name: 'checkbox',
     control,
@@ -75,7 +74,7 @@ export const LoginForm = () => {
           errorMessage={errors.password?.message}
         />
         <div className={s.checkbox}>
-          <Checkbox checked={checkboxValue} onValueChange={handleCheckboxChange} />
+          {/*<Checkbox checked={checkboxValue} onValueChange={handleCheckboxChange} />*/}
           <span className={s.rememberMe}> Remember me</span>
         </div>
 
