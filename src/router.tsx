@@ -6,6 +6,9 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 
+import { Decks } from './pages/decks.tsx'
+import { useGetDecksQuery } from './services/base-api.ts'
+
 const publicRoutes: RouteObject[] = [
   {
     path: '/login',
@@ -16,7 +19,7 @@ const publicRoutes: RouteObject[] = [
 const privateRoutes: RouteObject[] = [
   {
     path: '/',
-    element: <div>hello</div>,
+    element: <Decks />,
   },
 ]
 
@@ -35,5 +38,7 @@ const router = createBrowserRouter([
 ])
 
 export const Router = () => {
+  const { isLoading, data } = useGetDecksQuery()
+
   return <RouterProvider router={router} />
 }
