@@ -1,4 +1,5 @@
-import { ChangeEvent, ComponentPropsWithoutRef, useState } from 'react'
+// eslint-disable-next-line import/default
+import { ComponentPropsWithoutRef, useState } from 'react'
 
 import { clsx } from 'clsx'
 
@@ -15,7 +16,7 @@ export type TextFieldProps = {
   errorMessage?: string
   label?: string
   isSearch?: boolean
-  onValueChange?: (value: string) => void
+  onChangeValue?: (value: string) => void
   value?: string
 } & ComponentPropsWithoutRef<'input'>
 
@@ -25,8 +26,8 @@ export const TextField = ({
   type = 'text',
   errorMessage,
   placeholder,
-  onValueChange,
   disabled,
+  onChangeValue,
   value,
   ...rest
 }: TextFieldProps) => {
@@ -43,12 +44,9 @@ export const TextField = ({
     focusVisible: s.focusVisible,
     error: clsx(s.error),
   }
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onValueChange?.(e.target.value)
-  }
 
   return (
-    <div className={classNames.root}>
+    <div className={`${classNames.root}  ${className}`}>
       <Typography variant="body2" as="label" className={classNames.label}>
         {label}
       </Typography>
@@ -59,7 +57,7 @@ export const TextField = ({
           value={value}
           placeholder={placeholder}
           disabled={disabled}
-          onChange={handleChange}
+          onChange={e => onChangeValue?.(e.currentTarget.value)}
           {...rest}
         />
         {type === 'search' && (
@@ -67,12 +65,11 @@ export const TextField = ({
             <div className={classNames.search}>
               <Search />
             </div>
-            <button
-              className={classNames.rightIcon}
-              onClick={() => onValueChange && onValueChange('')}
-            >
-              <CloseIcon />
-            </button>
+            {value && (
+              <button className={classNames.rightIcon} onClick={() => onChangeValue?.('')}>
+                <CloseIcon />
+              </button>
+            )}
           </span>
         )}
         {type === 'password' && (
