@@ -24,11 +24,12 @@ export const Decks = () => {
     itemsPerPage,
     currentPage,
     name: searchByName,
+    orderBy: 'created-desc',
   })
 
   const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
 
-  const handlerCreateClicked = () => ({ name: cardName })
+  const handlerCreateClicked = () => createDeck({ name: cardName })
 
   if (isLoading) return <div>Loading...</div>
 
@@ -46,6 +47,11 @@ export const Decks = () => {
         <Button onClick={() => setCurrentPage(3)}>SetCurrentPage 3</Button>
       </div>
       <TextField value={searchByName} onChange={e => setSearch(e.currentTarget.value)} />
+      <TextField
+        label={'set card name'}
+        value={cardName}
+        onChange={e => setCardName(e.currentTarget.value)}
+      />
       <Button onClick={handlerCreateClicked}>Create Deck</Button>
       isCreateDeckLoading: {isCreateLoading.toString()}
       <table>
