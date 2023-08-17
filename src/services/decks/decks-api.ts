@@ -1,6 +1,5 @@
+import { CreateDeckArgs, Deck, DecksResponse, GetDecksArgs } from '../../pages/decks/types.ts'
 import { baseApi } from '../base-api.ts'
-
-import { DecksResponse, GetDecksArgs } from './types.ts'
 
 const decksApi = baseApi.injectEndpoints({
   endpoints: builder => {
@@ -15,7 +14,7 @@ const decksApi = baseApi.injectEndpoints({
         },
         providesTags: ['Decks'],
       }),
-      createDeck: builder.mutation<any, any>({
+      createDeck: builder.mutation<Deck, CreateDeckArgs>({
         query: ({ name }) => {
           return {
             url: `v1/decks`,

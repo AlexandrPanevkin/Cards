@@ -2,9 +2,13 @@ import { useState } from 'react'
 
 import { Button } from '../../components/ui/button'
 import { TextField } from '../../components/ui/text-field'
-import { useCreateDeckMutation, useGetDecksQuery } from '../../services/decks/decks-api.ts'
+import { useCreateDeckMutation, useGetDecksQuery } from '../../services/decks'
 import { decksSlice } from '../../services/decks/decks.slice.ts'
 import { useAppDispatch, useAppSelector } from '../../services/store.ts'
+
+// type Props = {
+//   objectFit: CSSProperties['objectFit']
+// } & Pick<CSSProperties, 'objectFit>
 
 export const Decks = () => {
   const [cardName, setCardName] = useState('')
