@@ -24,7 +24,7 @@ export const Default: Story = {
       <>
         <Slider
           value={value}
-          onValueChange={prev => {
+          onValueChange={(prev: any) => {
             setValue(prev)
           }}
         />
