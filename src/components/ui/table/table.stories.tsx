@@ -19,6 +19,26 @@ export const Default = {
             <Table.HeadCell>Название</Table.HeadCell>
           </Table.Row>
         </Table.Head>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+            <Table.Cell>Текст</Table.Cell>
+          </Table.Row>
+        </Table.Body>
       </>
     ),
   },
