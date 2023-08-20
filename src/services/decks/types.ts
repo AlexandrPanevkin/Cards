@@ -9,3 +9,8 @@ export interface Pagination {
   itemsPerPage: number
   totalItems: number
 }
+
+export type Sort = {
+  key: string
+  direction: 'asc' | 'desc'
+} | null

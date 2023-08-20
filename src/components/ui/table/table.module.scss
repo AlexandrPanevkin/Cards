@@ -25,3 +25,7 @@
   background-color: var(--color-bg-table);
   border-bottom: 1px solid var(--color-dark-500);
 }
+
+.chevronDown {
+  transform: rotate(180deg);
+}
