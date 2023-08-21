@@ -14,6 +14,17 @@
   line-height: var(--font-size-m);
 
   background: var(--color-dark-500);
+
+  > span {
+    user-select: none;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &.sortable > span {
+    cursor: pointer;
+  }
 }
 
 .tableCell {
@@ -28,4 +39,8 @@
 
 .chevronDown {
   transform: rotate(180deg);
+}
+
+.chevron {
+  transition: transform 0.2s ease-in-out;
 }

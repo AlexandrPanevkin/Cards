@@ -40,7 +40,7 @@ export const Header: FC<
   >
 > = ({ columns, sort, onSort, ...rest }) => {
   const classNames = {
-    chevron: sort?.direction === 'asc' ? '' : s.chevronDown,
+    chevron: clsx(sort?.direction === 'asc' ? '' : s.chevronDown, s.chevron),
   }
 
   const handleSort = (key: string, sortable?: boolean) => {
