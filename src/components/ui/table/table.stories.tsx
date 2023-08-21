@@ -207,3 +207,7 @@ export const WithSort = {
     )
   },
 }
+
+export const Empty = {
+  render: () => <Table.Empty />,
+}

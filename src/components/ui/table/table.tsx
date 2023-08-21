@@ -3,6 +3,7 @@ import { ComponentProps, FC } from 'react'
 import { clsx } from 'clsx'
 
 import { Sort } from '../../../services/decks/types.ts'
+import { Typography } from '../typography'
 
 import { ChevronUp } from './icons/ChevronUp.tsx'
 import s from './table.module.scss'
@@ -108,6 +109,26 @@ export const Cell: FC<CellProps> = ({ className, ...rest }) => {
   return <td className={classNames.cell} {...rest} />
 }
 
+export const Empty: FC<ComponentProps<'div'> & { mt?: string; mb?: string }> = ({
+  className,
+  mt = '89px',
+  mb,
+}) => {
+  const classNames = {
+    empty: clsx(className, s.empty),
+  }
+
+  return (
+    <Typography
+      variant={'h2'}
+      className={classNames.empty}
+      style={{ marginTop: mt, marginBottom: mb }}
+    >
+      Пока тут еще нет данных! :(
+    </Typography>
+  )
+}
+
 export const Table = {
   Root,
   Head,
@@ -116,4 +137,5 @@ export const Table = {
   Row,
   Cell,
   Header,
+  Empty,
 }
