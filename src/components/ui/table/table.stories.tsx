@@ -1,6 +1,10 @@
+import { useState, useMemo } from 'react'
+
 import { Meta } from '@storybook/react'
 
-import { Table } from './table.tsx'
+import { Sort } from '../../../services/decks/types.ts'
+
+import { Column, Table } from './table.tsx'
 
 export default {
   title: 'Components/Table',
@@ -103,5 +107,103 @@ export const WithMapMethod = {
         </Table.Body>
       </>
     ),
+  },
+}
+
+export const WithSort = {
+  render: (args: any) => {
+    const [sort, setSort] = useState<Sort>(null)
+    const sortString: string | null = sort ? `${sort?.key}-${sort?.direction}` : null
+
+    console.log(sort, sortString)
+
+    const columns: Column[] = [
+      {
+        key: 'title',
+        title: 'Name',
+        sortable: true,
+      },
+      {
+        key: 'cardsCount',
+        title: 'Cards',
+        sortable: true,
+      },
+      {
+        key: 'updated',
+        title: 'Last Updated',
+      },
+      {
+        key: 'createdBy',
+        title: 'Created by',
+        sortable: true,
+      },
+      {
+        key: 'options',
+        title: '',
+      },
+    ]
+    const data1 = [
+      {
+        title: 'Project A',
+        cardsCount: 10,
+        updated: '2023-07-07',
+        createdBy: 'John Doe',
+      },
+      {
+        title: 'Project B',
+        cardsCount: 5,
+        updated: '2023-07-06',
+        createdBy: 'Jane Smith',
+      },
+      {
+        title: 'Project C',
+        cardsCount: 8,
+        updated: '2023-07-05',
+        createdBy: 'Alice Johnson',
+      },
+      {
+        title: 'Project D',
+        cardsCount: 3,
+        updated: '2023-07-07',
+        createdBy: 'Bob Anderson',
+      },
+      {
+        title: 'Project E',
+        cardsCount: 12,
+        updated: '2023-07-04',
+        createdBy: 'Emma Davis',
+      },
+    ]
+    const sortedData = useMemo(() => {
+      if (!sortString) {
+        return data1
+      }
+      const [key, direction] = sortString.split('-')
+
+      return [...data1].sort((a, b) => {
+        if (direction === 'asc') {
+          return a[key as keyof typeof a] > b[key as keyof typeof b] ? 1 : -1
+        }
+
+        return a[key as keyof typeof a] < b[key as keyof typeof b] ? 1 : -1
+      })
+    }, [sortString])
+
+    return (
+      <Table.Root {...args} style={{ width: '100%' }}>
+        <Table.Header columns={columns} onSort={setSort} sort={sort} />
+        <Table.Body>
+          {sortedData.map(item => (
+            <Table.Row key={item.title}>
+              <Table.Cell>{item.title}</Table.Cell>
+              <Table.Cell>{item.cardsCount}</Table.Cell>
+              <Table.Cell>{item.updated}</Table.Cell>
+              <Table.Cell>{item.createdBy}</Table.Cell>
+              <Table.Cell>icons...</Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table.Root>
+    )
   },
 }

@@ -115,4 +115,5 @@ export const Table = {
   Body,
   Row,
   Cell,
+  Header,
 }
