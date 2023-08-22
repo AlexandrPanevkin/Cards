@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { Button } from '../../components/ui/button'
+import { Table } from '../../components/ui/table'
 import { TextField } from '../../components/ui/text-field'
 import { useCreateDeckMutation, useGetDecksQuery } from '../../services/decks'
 import { decksSlice } from '../../services/decks/decks.slice.ts'
@@ -58,26 +59,26 @@ export const Decks = () => {
       />
       <Button onClick={handlerCreateClicked}>Create Deck</Button>
       isCreateDeckLoading: {isCreateLoading.toString()}
-      <table>
-        <tbody>
-          <tr>
-            <th>Name</th>
-            <th>Cards</th>
-            <th>Last updated</th>
-            <th>Created by</th>
-          </tr>
+      <Table.Root>
+        <Table.Head>
+          <Table.Row>
+            <Table.HeadCell>Name</Table.HeadCell>
+            <Table.HeadCell>Cards</Table.HeadCell>
+            <Table.HeadCell>Last updated</Table.HeadCell>
+            <Table.HeadCell>Created by</Table.HeadCell>
+          </Table.Row>
           {data?.items.map(deck => {
             return (
-              <tr key={deck.id}>
-                <td>{deck.name}</td>
-                <td>{deck.cardsCount}</td>
-                <td>{new Date(deck.updated).toLocaleDateString('ru-Ru')}</td>
-                <td>{deck.author.name}</td>
-              </tr>
+              <Table.Row key={deck.id}>
+                <Table.Cell>{deck.name}</Table.Cell>
+                <Table.Cell>{deck.cardsCount}</Table.Cell>
+                <Table.Cell>{new Date(deck.updated).toLocaleDateString('ru-Ru')}</Table.Cell>
+                <Table.Cell>{deck.author.name}</Table.Cell>
+              </Table.Row>
             )
           })}
-        </tbody>
-      </table>
+        </Table.Head>
+      </Table.Root>
     </div>
   )
 }
