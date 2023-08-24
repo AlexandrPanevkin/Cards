@@ -12,7 +12,7 @@ import s from './login-form.module.scss'
 type FormValues = {
   email: string
   password: string
-  checkbox: boolean
+  rememberMe: boolean
 }
 
 const loginSchema = z.object({
@@ -46,7 +46,7 @@ export const LoginForm = () => {
   const {
     // field: { value: checkboxValue, onChange: handleCheckboxChange },
   } = useController({
-    name: 'checkbox',
+    name: 'rememberMe',
     control,
     defaultValue: false,
   })
@@ -61,15 +61,15 @@ export const LoginForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextField
           value={emailValue}
-          onValueChange={handleEmailChange}
+          onChangeValue={handleEmailChange}
           label={'email'}
           type={'text'}
           errorMessage={errors.email?.message}
         />
         <TextField
           value={passwordValue}
-          onValueChange={handlePasswordChange}
-          label={'email'}
+          onChangeValue={handlePasswordChange}
+          label={'password'}
           type={'password'}
           errorMessage={errors.password?.message}
         />
