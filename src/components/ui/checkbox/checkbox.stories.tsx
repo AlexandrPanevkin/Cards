@@ -23,7 +23,7 @@ type Story = StoryObj<typeof Checkbox>
 export const Default: Story = {
   args: {
     checked: true,
-    label: 'Checkbox',
+    label: 'Check-box',
   },
   render: args => {
     const [checked, setChecked] = useState(false)

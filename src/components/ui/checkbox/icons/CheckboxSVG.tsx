@@ -1,6 +1,6 @@
 import { SVGProps, Ref, forwardRef, memo } from 'react'
 
-const Checkbox = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+const CheckboxSVG = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     width="18"
     height="18"
@@ -20,7 +20,7 @@ const Checkbox = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
     </g>
   </svg>
 )
-const ForwardRef = forwardRef(Checkbox)
+const ForwardRef = forwardRef(CheckboxSVG)
 const Memo = memo(ForwardRef)
 
-export { Memo as Checkbox }
+export { Memo as CheckboxSVG }
