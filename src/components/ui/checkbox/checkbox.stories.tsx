@@ -35,3 +35,34 @@ export const Default: Story = {
     )
   },
 }
+
+export const NoWords: Story = {
+  args: {
+    checked: true,
+  },
+
+  render: args => {
+    const [checked, setChecked] = useState(false)
+
+    return (
+      <>
+        <Checkbox {...args} checked={checked} onChange={() => setChecked(!checked)} />
+      </>
+    )
+  },
+}
+
+export const DisabledOn: Story = {
+  args: {
+    checked: true,
+    label: 'Check-box',
+    disabled: true,
+  },
+}
+export const DisabledOff: Story = {
+  args: {
+    checked: false,
+    label: 'Check-box',
+    disabled: true,
+  },
+}
