@@ -1,11 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useController, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
-import { Checkbox } from '../../ui/checkbox'
-import { ControlledTextField } from '../../ui/controlled'
+import { ControlledCheckBox } from '../../ui/controlled/controlled-check-box'
+import { ControlledTextField } from '../../ui/controlled/controlled-text-field'
 import { Typography } from '../../ui/typography'
 
 import s from './sign-in.module.scss'
@@ -31,14 +31,6 @@ export const SignIn = () => {
     resolver: zodResolver(loginSchema),
   })
 
-  const {
-    field: { value: checkboxValue, onChange: handleCheckboxChange },
-  } = useController({
-    name: 'rememberMe',
-    control,
-    defaultValue: false,
-  })
-
   const onSubmit = (data: FormValues) => {
     console.log(data)
   }
@@ -62,8 +54,7 @@ export const SignIn = () => {
           errorMessage={errors.password?.message}
         />
         <div className={s.checkbox}>
-          <Checkbox checked={checkboxValue} onChange={handleCheckboxChange} />
-          <span className={s.rememberMe}> Remember me</span>
+          <ControlledCheckBox control={control} label={'Remember me'} name={'rememberMe'} />
         </div>
 
         <div className={s.submitButton}>
