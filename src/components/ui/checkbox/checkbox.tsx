@@ -5,6 +5,7 @@ import { Typography } from '../typography'
 
 import s from './checkbox.module.scss'
 import { CheckboxSVG } from './icons/CheckboxSVG.tsx'
+import { DisabledCheckboxSVG } from './icons/DisabledCheckboxSVG.tsx'
 
 export type CheckBoxProps = {
   checked?: boolean
@@ -23,7 +24,7 @@ export const Checkbox = ({ checked, onChange, label, id, disabled }: CheckBoxPro
       <div className={classButtonWrapper}>
         <CheckboxRadix.Root className={s.root} checked={checked} onCheckedChange={onChange} id={id}>
           <CheckboxRadix.Indicator className={s.indicator}>
-            {checked && <CheckboxSVG />}
+            {disabled ? <DisabledCheckboxSVG /> : <CheckboxSVG />}
           </CheckboxRadix.Indicator>
         </CheckboxRadix.Root>
       </div>

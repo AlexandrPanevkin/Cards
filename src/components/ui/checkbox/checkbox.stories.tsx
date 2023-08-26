@@ -38,7 +38,7 @@ export const Default: Story = {
 
 export const NoWords: Story = {
   args: {
-    checked: true,
+    checked: false,
   },
 
   render: args => {

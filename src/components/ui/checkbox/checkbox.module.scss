@@ -14,13 +14,21 @@ button {
   width: 18px;
   height: 18px;
 
-  background-color: var(--color-dark-900);
   border: 2px solid;
-  border-radius: 4px;
+  border-radius: 2px;
 
-  &:disabled {
-    cursor: initial;
-  }
+  //&.disabled {
+  //  cursor: initial;
+  //  background-color: var(--color-dark-100);
+  //}
+  //
+  //&:not(.disabled) {
+  //  background-color: var(--color-light-100);
+  //}
+  //
+  //&:not([data-state='checked']) {
+  //  background-color: transparent;
+  //}
 }
 
 .label {
@@ -36,6 +44,10 @@ button {
 .indicator {
   width: 18px;
   height: 18px;
+
+  &.disabled {
+    color: var(--color-dark-100);
+  }
 }
 
 .buttonWrapper {
