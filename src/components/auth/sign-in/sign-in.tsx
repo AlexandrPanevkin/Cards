@@ -7,31 +7,21 @@ import { Card } from '../../ui/card'
 import { ControlledCheckBox } from '../../ui/controlled/controlled-check-box'
 import { ControlledTextField } from '../../ui/controlled/controlled-text-field'
 import { Typography } from '../../ui/typography'
+import { signInScheme } from '../validation'
 
 import s from './sign-in.module.scss'
 
-type FormValues = {
-  email: string
-  password: string
-  rememberMe: boolean
-}
-
-const loginSchema = z.object({
-  email: z.string().nonempty().email(),
-  password: z.string().min(3),
-  rememberMe: z.boolean().default(false),
-})
-
+type SignInType = z.infer<typeof signInScheme>
 export const SignIn = () => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<FormValues>({
-    resolver: zodResolver(loginSchema),
+  } = useForm<SignInType>({
+    resolver: zodResolver(signInScheme),
   })
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: SignInType) => {
     console.log(data)
   }
 
