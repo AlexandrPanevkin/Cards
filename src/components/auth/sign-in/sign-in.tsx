@@ -4,10 +4,11 @@ import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
-import { TextField } from '../../ui/text-field'
+import { Checkbox } from '../../ui/checkbox'
+import { ControlledTextField } from '../../ui/controlled'
 import { Typography } from '../../ui/typography'
 
-import s from './login-form.module.scss'
+import s from './sign-in.module.scss'
 
 type FormValues = {
   email: string
@@ -21,30 +22,17 @@ const loginSchema = z.object({
   rememberMe: z.boolean().default(false),
 })
 
-export const LoginForm = () => {
-  const { handleSubmit, control } = useForm<FormValues>({
+export const SignIn = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<FormValues>({
     resolver: zodResolver(loginSchema),
   })
 
   const {
-    field: { value: emailValue, onChange: handleEmailChange },
-    formState: { errors },
-  } = useController({
-    name: 'email',
-    control,
-    defaultValue: '',
-  })
-
-  const {
-    field: { value: passwordValue, onChange: handlePasswordChange },
-  } = useController({
-    name: 'password',
-    control,
-    defaultValue: '',
-  })
-
-  const {
-    // field: { value: checkboxValue, onChange: handleCheckboxChange },
+    field: { value: checkboxValue, onChange: handleCheckboxChange },
   } = useController({
     name: 'rememberMe',
     control,
@@ -59,22 +47,22 @@ export const LoginForm = () => {
     <Card>
       <Typography className={s.signIn}>Sign In</Typography>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField
-          value={emailValue}
-          onChangeValue={handleEmailChange}
+        <ControlledTextField
+          name={'email'}
+          control={control}
           label={'email'}
           type={'text'}
           errorMessage={errors.email?.message}
         />
-        <TextField
-          value={passwordValue}
-          onChangeValue={handlePasswordChange}
+        <ControlledTextField
+          name={'password'}
+          control={control}
           label={'password'}
-          type={'password'}
+          type={'text'}
           errorMessage={errors.password?.message}
         />
         <div className={s.checkbox}>
-          {/*<Checkbox checked={checkboxValue} onValueChange={handleCheckboxChange} />*/}
+          <Checkbox checked={checkboxValue} onChange={handleCheckboxChange} />
           <span className={s.rememberMe}> Remember me</span>
         </div>
 
