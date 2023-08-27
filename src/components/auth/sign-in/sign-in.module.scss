@@ -1,14 +1,33 @@
-.submitButton {
-  padding-top: 60px;
-  padding-right: 10px;
-}
-
 .signIn {
   display: flex;
   justify-content: center;
+  margin: 0 0 15px;
 }
 
-.checkbox {
+.inputMargin {
+  margin-bottom: 1.5rem;
+}
+
+.questionStyle {
+  color: var(--color-light-900);
+}
+
+.underlineBtn > span {
+  text-decoration: underline;
+}
+
+.forgotPassword {
   display: flex;
+  justify-content: end;
+  padding-bottom: 50px;
+}
+
+.formFooter {
+  display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.rememberMe {
+  padding-top: 12px;
 }

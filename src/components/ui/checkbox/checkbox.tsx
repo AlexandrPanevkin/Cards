@@ -13,14 +13,15 @@ export type CheckBoxProps = {
   label?: string
   id?: string
   disabled?: boolean
+  className?: string
 }
 
-export const Checkbox = ({ checked, onChange, label, id, disabled }: CheckBoxProps) => {
+export const Checkbox = ({ checked, onChange, label, id, disabled, className }: CheckBoxProps) => {
   const classLabel = disabled ? s.label + ' ' + s.disabled : s.label
   const classButtonWrapper = disabled ? s.buttonWrapper + ' ' + s.disabled : s.buttonWrapper
 
   return (
-    <LabelRadix.Root className={classLabel}>
+    <LabelRadix.Root className={`${classLabel} ${className}`}>
       <div className={classButtonWrapper}>
         <CheckboxRadix.Root className={s.root} checked={checked} onCheckedChange={onChange} id={id}>
           <CheckboxRadix.Indicator className={s.indicator}>

@@ -7,11 +7,12 @@ import {
 } from 'react-router-dom'
 
 import { Decks } from './pages/decks'
+import { SignInPage } from './pages/sign-in/sign-in.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
     path: '/login',
-    element: <div>login</div>,
+    element: <SignInPage />,
   },
 ]
 

@@ -23,5 +23,5 @@ export const ControlledTextField = <T extends FieldValues>({
     shouldUnregister,
   })
 
-  return <TextField value={value} onChangeValue={onChange} {...fieldProps} />
+  return <TextField value={value} onValueChange={onChange} {...fieldProps} />
 }

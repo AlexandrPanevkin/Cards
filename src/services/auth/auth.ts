@@ -6,8 +6,8 @@ const authApi = baseApi.injectEndpoints({
       login: builder.mutation<any, any>({
         query: args => {
           return {
-            url: `v1/decks`,
-            method: 'GET',
+            url: `v1/auth/login`,
+            method: 'POST',
             params: args,
           }
         },

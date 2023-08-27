@@ -1,3 +1,5 @@
+import { FC } from 'react'
+
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -12,47 +14,66 @@ import { signInScheme } from '../validation'
 import s from './sign-in.module.scss'
 
 type SignInType = z.infer<typeof signInScheme>
-export const SignIn = () => {
+type SignInPropsType = {
+  onSubmit: (data: SignInType) => void
+}
+export const SignIn: FC<SignInPropsType> = ({ onSubmit }) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
   } = useForm<SignInType>({
     resolver: zodResolver(signInScheme),
+    mode: 'onSubmit',
   })
-
-  const onSubmit = (data: SignInType) => {
-    console.log(data)
-  }
+  const onSubmitForm = handleSubmit(data => {
+    onSubmit({ email: data.email, password: data.password, rememberMe: data.rememberMe })
+  })
 
   return (
     <Card>
-      <Typography className={s.signIn}>Sign In</Typography>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Typography variant={'large'} className={s.signIn}>
+        Sign In
+      </Typography>
+      <form onSubmit={onSubmitForm}>
         <ControlledTextField
           name={'email'}
           control={control}
-          label={'email'}
+          label={'Email'}
           type={'text'}
           errorMessage={errors.email?.message}
+          className={s.inputMargin}
         />
         <ControlledTextField
           name={'password'}
           control={control}
-          label={'password'}
-          type={'text'}
+          label={'Password'}
+          type={'password'}
           errorMessage={errors.password?.message}
         />
-        <div className={s.checkbox}>
-          <ControlledCheckBox control={control} label={'Remember me'} name={'rememberMe'} />
-        </div>
+        <ControlledCheckBox
+          className={s.rememberMe}
+          control={control}
+          label={'Remember me'}
+          name={'rememberMe'}
+        />
+        <Typography variant={'body2'} className={s.forgotPassword}>
+          Forgot Password?
+        </Typography>
 
-        <div className={s.submitButton}>
-          <Button type="submit" fullWidth>
-            Submit
-          </Button>
-        </div>
+        <Button type="submit" fullWidth>
+          Sign In
+        </Button>
       </form>
+      <span className={s.formFooter}>
+        <Typography variant={'body2'} className={s.questionStyle}>
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
+          Don't have an account?
+        </Typography>
+        <Button variant={'link'} as={'a'} className={s.underlineBtn}>
+          Sign Up
+        </Button>
+      </span>
     </Card>
   )
 }
