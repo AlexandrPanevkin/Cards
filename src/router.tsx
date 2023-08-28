@@ -9,6 +9,7 @@ import {
 import { Decks } from './pages/decks'
 import { SignInPage } from './pages/sign-in/sign-in.tsx'
 import { useMeQuery } from './services/auth/auth.ts'
+import { GlobalHistory } from './utils/global-navigate.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -26,8 +27,13 @@ const privateRoutes: RouteObject[] = [
 
 const router = createBrowserRouter([
   {
-    element: <PrivateRoutes />,
-    children: privateRoutes,
+    element: <GlobalHistory />,
+    children: [
+      {
+        element: <PrivateRoutes />,
+        children: privateRoutes,
+      },
+    ],
   },
   ...publicRoutes,
 ])

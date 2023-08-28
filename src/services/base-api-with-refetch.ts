@@ -1,7 +1,9 @@
 import { BaseQueryFn, FetchArgs, fetchBaseQuery, FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { Mutex } from 'async-mutex'
 
-const baseUrl = 'http://localhost:3333'
+import { globalNavigate } from '../utils/global-navigate.tsx'
+
+const baseUrl = 'https://api.flashcards.andrii.es'
 
 // Create a new mutex
 const mutex = new Mutex()
@@ -35,7 +37,7 @@ export const customFetchBase: BaseQueryFn<
           // Retry the initial query
           result = await baseQuery(args, api, extraOptions)
         } else {
-          // globalNavigate('/login')
+          globalNavigate('/login')
         }
       } finally {
         release()
