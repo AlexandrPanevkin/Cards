@@ -18,6 +18,7 @@ export const Decks = () => {
   const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
   const currentPage = useAppSelector(state => state.decksSlice.currentPage)
   const searchByName = useAppSelector(state => state.decksSlice.searchByName)
+  const orderBy = useAppSelector(state => state.decksSlice.orderBy)
 
   const setItemsPerPage = (itemsPerPage: number) =>
     dispatch(decksSlice.actions.setItemsPerPage(itemsPerPage))
@@ -26,11 +27,11 @@ export const Decks = () => {
   const setSearch = (searchValue: string) =>
     dispatch(decksSlice.actions.setSearchByName(searchValue))
 
-  const { data, isLoading } = useGetDecksQuery({
+  const { currentData: data, isLoading } = useGetDecksQuery({
     itemsPerPage,
     currentPage,
     name: searchByName,
-    orderBy: 'created-desc',
+    orderBy,
   })
 
   const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
