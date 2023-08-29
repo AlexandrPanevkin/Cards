@@ -16,8 +16,9 @@ import s from './sign-in.module.scss'
 type SignInType = z.infer<typeof signInScheme>
 type SignInPropsType = {
   onSubmit: (data: SignInType) => void
+  isSubmitting: boolean
 }
-export const SignIn: FC<SignInPropsType> = ({ onSubmit }) => {
+export const SignIn: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
   const {
     handleSubmit,
     control,
@@ -61,7 +62,7 @@ export const SignIn: FC<SignInPropsType> = ({ onSubmit }) => {
           Forgot Password?
         </Typography>
 
-        <Button type="submit" fullWidth>
+        <Button type="submit" fullWidth disabled={isSubmitting}>
           Sign In
         </Button>
       </form>
@@ -70,7 +71,7 @@ export const SignIn: FC<SignInPropsType> = ({ onSubmit }) => {
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           Don't have an account?
         </Typography>
-        <Button variant={'link'} as={'a'} className={s.underlineBtn}>
+        <Button variant={'link'} as={'a'} disabled={isSubmitting} className={s.underlineBtn}>
           Sign Up
         </Button>
       </span>

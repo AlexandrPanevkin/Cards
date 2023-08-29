@@ -10,6 +10,9 @@ const authApi = baseApi.injectEndpoints({
             method: 'GET',
           }
         },
+        extraOptions: {
+          maxRetries: 0,
+        },
       }),
       login: builder.mutation<any, any>({
         query: args => {

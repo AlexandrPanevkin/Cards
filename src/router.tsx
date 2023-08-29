@@ -9,7 +9,6 @@ import {
 import { Decks } from './pages/decks'
 import { SignInPage } from './pages/sign-in/sign-in.tsx'
 import { useMeQuery } from './services/auth/auth.ts'
-import { GlobalHistory } from './utils/global-navigate.tsx'
 
 const publicRoutes: RouteObject[] = [
   {
@@ -27,27 +26,22 @@ const privateRoutes: RouteObject[] = [
 
 const router = createBrowserRouter([
   {
-    element: <GlobalHistory />,
-    children: [
-      {
-        element: <PrivateRoutes />,
-        children: privateRoutes,
-      },
-    ],
+    element: <PrivateRoutes />,
+    children: privateRoutes,
   },
   ...publicRoutes,
 ])
 
 export const Router = () => {
-  const { data } = useMeQuery()
-
-  console.log(data)
-
   return <RouterProvider router={router} />
 }
 
 function PrivateRoutes() {
-  const isAuthenticated = true
+  const { data, isLoading } = useMeQuery()
+
+  if (isLoading) return <div>Loading...</div>
+
+  const isAuthenticated = !!data
 
   return isAuthenticated ? <Outlet /> : <Navigate to="/login" />
 }
