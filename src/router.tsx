@@ -1,35 +1,30 @@
-import {
-  createBrowserRouter,
-  Navigate,
-  Outlet,
-  RouteObject,
-  RouterProvider,
-} from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom'
 
+import { Layout } from './components/layout/layout.tsx'
 import { Decks } from './pages/decks'
 import { SignInPage } from './pages/sign-in/sign-in.tsx'
 import { useMeQuery } from './services/auth/auth.ts'
 
-const publicRoutes: RouteObject[] = [
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        element: <PrivateRoutes />,
+        children: [
+          {
+            index: true,
+            element: <Decks />,
+          },
+        ],
+      },
+    ],
+  },
   {
     path: '/login',
     element: <SignInPage />,
   },
-]
-
-const privateRoutes: RouteObject[] = [
-  {
-    path: '/',
-    element: <Decks />,
-  },
-]
-
-const router = createBrowserRouter([
-  {
-    element: <PrivateRoutes />,
-    children: privateRoutes,
-  },
-  ...publicRoutes,
 ])
 
 export const Router = () => {
