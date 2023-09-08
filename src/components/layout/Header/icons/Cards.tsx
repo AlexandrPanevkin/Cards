@@ -4,8 +4,8 @@ const Cards = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
-    width="442.000000pt"
-    height="195.000000pt"
+    width="8.5rem"
+    height="2.25rem"
     viewBox="0 0 442.000000 195.000000"
     preserveAspectRatio="xMidYMid meet"
     ref={ref}
@@ -13,7 +13,7 @@ const Cards = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   >
     <g
       transform="translate(0.000000,195.000000) scale(0.100000,-0.100000)"
-      fill="#000000"
+      fill="#171717"
       stroke="none"
     >
       <path

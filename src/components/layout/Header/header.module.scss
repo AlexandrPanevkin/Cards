@@ -1,8 +1,27 @@
-.main {
-  max-width: 420px;
-  margin: 5% auto;
-  padding: 36px;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  background-color: var(--color-dark-700);
-  border-radius: 2px;
+  max-width: 1280px;
+  height: 60px;
+  margin: 0 auto;
+
+  background: var(--color-dark-700);
+}
+
+.cards {
+  height: 100%;
+  margin-left: 8.5rem;
+  color: var(--color-dark-100);
+  background-color: #fff;
+
+  @media (width <= 575px) {
+    width: 120px;
+  }
+}
+
+.button {
+  margin-right: 8.59rem;
+  padding: 6px 28px;
 }
