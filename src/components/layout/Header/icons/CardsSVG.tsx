@@ -1,6 +1,6 @@
 import { SVGProps, Ref, forwardRef, memo } from 'react'
 
-const Cards = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+const CardsSVG = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
@@ -53,7 +53,7 @@ c55 -2 80 -8 95 -22z m276 10 c87 -37 101 -176 24 -241 -26 -21 -41 -25 -95
     </g>
   </svg>
 )
-const ForwardRef = forwardRef(Cards)
+const ForwardRef = forwardRef(CardsSVG)
 const Memo = memo(ForwardRef)
 
-export { Memo as Cards }
+export { Memo as CardsSVG }

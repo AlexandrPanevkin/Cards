@@ -1,9 +1,11 @@
 import { baseApi } from '../base-api.ts'
 
+import { UserType } from './types.ts'
+
 const authApi = baseApi.injectEndpoints({
   endpoints: builder => {
     return {
-      me: builder.query<any, void>({
+      me: builder.query<UserType | null, void>({
         query: () => {
           return {
             url: `v1/auth/me`,

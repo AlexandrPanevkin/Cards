@@ -8,20 +8,30 @@
   margin: 0 auto;
 
   background: var(--color-dark-700);
-}
 
-.cards {
-  height: 100%;
-  margin-left: 8.5rem;
-  color: var(--color-dark-100);
-  background-color: #fff;
+  .cards {
+    height: 100%;
+    margin-left: 7.5rem;
+    color: var(--color-dark-100);
+    background-color: #fff;
 
-  @media (width <= 575px) {
-    width: 120px;
+    @media (width <= 575px) {
+      width: 120px;
+    }
   }
-}
 
-.button {
-  margin-right: 8.59rem;
-  padding: 6px 28px;
+  .button {
+    margin-right: 8.59rem;
+    padding: 6px 28px;
+  }
+
+  .info {
+    display: flex;
+    gap: 12px;
+    margin-right: 7.5rem;
+
+    .name {
+      border-bottom: 2px dashed;
+    }
+  }
 }
