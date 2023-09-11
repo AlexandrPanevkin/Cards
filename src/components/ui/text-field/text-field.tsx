@@ -16,7 +16,7 @@ export type TextFieldProps = {
   errorMessage?: string
   label?: string
   isSearch?: boolean
-  onValueChange?: (value: string) => void
+  onChangeValue?: (value: string) => void
   value?: string
 } & ComponentPropsWithoutRef<'input'>
 
@@ -27,7 +27,7 @@ export const TextField = ({
   errorMessage,
   placeholder,
   disabled,
-  onValueChange,
+  onChangeValue,
   value,
   ...rest
 }: TextFieldProps) => {
@@ -57,7 +57,7 @@ export const TextField = ({
           value={value}
           placeholder={placeholder}
           disabled={disabled}
-          onChange={e => onValueChange?.(e.target.value)}
+          onChange={e => onChangeValue?.(e.target.value)}
           {...rest}
         />
         {type === 'search' && (
@@ -66,7 +66,7 @@ export const TextField = ({
               <Search />
             </div>
             {value && (
-              <button className={classNames.rightIcon} onClick={() => onValueChange?.('')}>
+              <button className={classNames.rightIcon} onClick={() => onChangeValue?.('')}>
                 <CloseIcon />
               </button>
             )}
