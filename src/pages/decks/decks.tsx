@@ -3,7 +3,6 @@ import { useState } from 'react'
 import { Button } from '../../components/ui/button'
 import { Table } from '../../components/ui/table'
 import { TextField } from '../../components/ui/text-field'
-import { useLogoutMutation } from '../../services/auth/auth.ts'
 import { useCreateDeckMutation, useGetDecksQuery } from '../../services/decks'
 import { decksSlice } from '../../services/decks/decks.slice.ts'
 import { useAppDispatch, useAppSelector } from '../../services/store.ts'
@@ -35,7 +34,6 @@ export const Decks = () => {
   })
 
   const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
-  const [logout] = useLogoutMutation()
 
   const handlerCreateClicked = () => createDeck({ name: cardName })
 
@@ -43,7 +41,6 @@ export const Decks = () => {
 
   return (
     <div>
-      <Button onClick={logout}>Logout</Button>
       <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />
       <div>
         <Button onClick={() => setItemsPerPage(10)}>ItemsPerPage: 10</Button>

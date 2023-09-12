@@ -2,8 +2,9 @@ import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-rou
 
 import { Layout } from './components/layout/layout.tsx'
 import { Decks } from './pages/decks'
+import { Profile } from './pages/Profile/Profile.tsx'
 import { SignInPage } from './pages/sign-in/sign-in.tsx'
-import { useMeQuery } from './services/auth/auth.ts'
+import { useMeQuery } from './services/auth/auth.api.ts'
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Decks />,
+          },
+          {
+            path: 'profile',
+            element: <Profile />,
           },
         ],
       },

@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+import { useLogoutMutation } from '../../../services/auth/auth.api.ts'
 import { UserType } from '../../../services/auth/types.ts'
 import { Avatar } from '../../ui/avatar'
 import { Button } from '../../ui/button'
@@ -18,6 +19,8 @@ type HeaderType = {
 }
 
 export const Header: FC<HeaderType> = ({ userData }) => {
+  const [logout] = useLogoutMutation()
+
   return (
     <div className={s.container}>
       <CardsSVG className={s.cards} />
@@ -33,7 +36,7 @@ export const Header: FC<HeaderType> = ({ userData }) => {
               userEmail={userData.email}
             />
             <DropDownMenuItem icon={personIcon} text={'My Profile'} />
-            <DropDownMenuItem icon={logOutIcon} text={'Sign Out'} />
+            <DropDownMenuItem onClick={logout} icon={logOutIcon} text={'Sign Out'} />
           </DropDownMenu>
         </div>
       ) : (
