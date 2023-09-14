@@ -6,7 +6,9 @@ import { z } from 'zod'
 
 import { Button } from '../../../ui/button'
 import { ControlledTextField } from '../../../ui/controlled/controlled-text-field'
+import { Typography } from '../../../ui/typography'
 
+import s from './edit-name.module.scss'
 import { nickNameScheme } from './validation'
 
 type EditNameType = {
@@ -26,7 +28,7 @@ export const EditName: FC<EditNameType> = ({ editName }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
       <ControlledTextField
         errorMessage={errors.nickname?.message}
         type={'text'}
@@ -34,8 +36,8 @@ export const EditName: FC<EditNameType> = ({ editName }) => {
         control={control}
         name={'nickname'}
       />
-      <Button type="submit" variant={'primary'}>
-        Save Changes
+      <Button className={s.button} type="submit" variant={'primary'}>
+        <Typography variant={'subtitle2'}>Save Changes</Typography>
       </Button>
     </form>
   )
