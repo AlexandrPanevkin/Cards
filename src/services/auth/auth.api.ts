@@ -27,7 +27,7 @@ const authApi = baseApi.injectEndpoints({
         },
         invalidatesTags: ['Me'],
       }),
-      logout: builder.mutation({
+      logout: builder.mutation<void, void>({
         query: () => {
           return {
             url: `v1/auth/logout`,
