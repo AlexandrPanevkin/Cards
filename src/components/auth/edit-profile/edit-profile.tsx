@@ -8,6 +8,7 @@ import { Typography } from '../../ui/typography'
 
 import { EditName } from './edit-name/edit-name.tsx'
 import s from './edit-profile.module.scss'
+import lightPencil from './icons/lightPencil.svg'
 import { ReplaceAvatar } from './replace-avatar/replace-avatar.tsx'
 
 type EditProfileType = {
@@ -44,14 +45,17 @@ export const EditProfile: FC<EditProfileType> = ({ data }) => {
         />
       ) : (
         <>
-          <Typography
-            onDoubleClick={() => setSwitcher(!switcher)}
-            variant={'subtitle1'}
-            as={'span'}
-          >
+          <Typography className={s.nameField} variant={'subtitle1'} as={'span'}>
             {data?.name}
+            <img
+              onClick={() => setSwitcher(!switcher)}
+              className={s.lightPencil}
+              src={lightPencil}
+              alt={'Light pencil'}
+            />
           </Typography>
-          <Typography variant={'subtitle1'} as={'span'}>
+
+          <Typography variant={'subtitle1'} className={s.email} as={'span'}>
             {data?.email}
           </Typography>
           <Button>Logout</Button>

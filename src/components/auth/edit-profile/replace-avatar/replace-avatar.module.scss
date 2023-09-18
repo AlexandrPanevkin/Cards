@@ -1,16 +1,20 @@
 .container {
   position: relative;
 
+  .avatar {
+    margin-bottom: 10px;
+  }
+
   .avatarEdit {
     cursor: pointer;
     user-select: none;
 
     position: absolute;
-    top: 65px;
-    left: 65px;
+    top: 60px;
+    left: 60px;
 
-    width: 32px;
-    height: 32px;
+    width: 44px;
+    height: 44px;
   }
 
   .input {

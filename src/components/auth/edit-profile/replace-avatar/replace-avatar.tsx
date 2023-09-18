@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from 'react'
 
 import { Avatar } from '../../../ui/avatar'
-import darkPencil from '../icons/darkPencil.svg'
+import { DarkPensil } from '../icons/darkPensil.tsx'
 
 import s from './replace-avatar.module.scss'
 
@@ -25,8 +25,8 @@ export const ReplaceAvatar: FC<ReplaceAvatarType> = ({ src, replaceAvatar }) => 
 
   return (
     <div className={s.container}>
-      <Avatar src={src} size={96} />
-      <img src={darkPencil} className={s.avatarEdit} alt="Dark pencil" />
+      <Avatar className={s.avatar} src={src} size={96} />
+      <DarkPensil className={s.avatarEdit} />
       <label className={s.avatarEdit}>
         <input type="file" className={s.input} onChange={onChangeFile} />
       </label>

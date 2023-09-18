@@ -2,4 +2,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .email {
+    user-select: none;
+    padding-bottom: 10px;
+    color: var(--color-dark-100);
+  }
+
+  .nameField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 3px;
+
+    .lightPencil {
+      cursor: pointer;
+      width: 16px;
+      height: 16px;
+      margin-left: 5px;
+    }
+  }
 }
