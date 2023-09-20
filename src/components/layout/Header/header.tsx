@@ -1,4 +1,6 @@
-import { FC } from 'react'
+import { ComponentPropsWithoutRef, FC } from 'react'
+
+import { Link } from 'react-router-dom'
 
 import { useLogoutMutation } from '../../../services/auth/auth.api.ts'
 import { UserType } from '../../../services/auth/types.ts'
@@ -16,14 +18,19 @@ import { CardsSVG } from './icons/CardsSVG.tsx'
 
 type HeaderType = {
   userData?: UserType | null
-}
+} & ComponentPropsWithoutRef<'header'>
 
 export const Header: FC<HeaderType> = ({ userData }) => {
   const [logout] = useLogoutMutation()
 
   return (
     <div className={s.container}>
-      <CardsSVG className={s.cards} />
+      <Link to={'/'}>
+        <div className={s.logoContainer}>
+          <CardsSVG className={s.logo} />
+        </div>
+      </Link>
+
       {userData ? (
         <div className={s.info}>
           <Typography variant={'subtitle1'} className={s.name}>
@@ -35,8 +42,8 @@ export const Header: FC<HeaderType> = ({ userData }) => {
               userName={userData.name}
               userEmail={userData.email}
             />
-            <DropDownMenuItem icon={personIcon} text={'My Profile'} />
-            <DropDownMenuItem onClick={logout} icon={logOutIcon} text={'Sign Out'} />
+            <DropDownMenuItem as={'a'} href={'profile'} icon={personIcon} text={'My Profile'} />
+            <DropDownMenuItem onSelect={() => logout()} icon={logOutIcon} text={'Sign Out'} />
           </DropDownMenu>
         </div>
       ) : (

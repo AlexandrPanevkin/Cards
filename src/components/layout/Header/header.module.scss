@@ -9,14 +9,20 @@
 
   background: var(--color-dark-700);
 
-  .cards {
-    height: 100%;
-    margin-left: 7.5rem;
-    color: var(--color-dark-100);
-    background-color: #fff;
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    @media (width <= 575px) {
-      width: 120px;
+    .logo {
+      height: 100%;
+      margin-left: 7.5rem;
+      color: var(--color-dark-100);
+      background-color: #fff;
+
+      &:hover {
+        transform: translateY(2px);
+      }
     }
   }
 

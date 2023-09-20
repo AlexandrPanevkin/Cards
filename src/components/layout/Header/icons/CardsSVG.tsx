@@ -4,8 +4,8 @@ const CardsSVG = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
-    width="8.5rem"
-    height="2.25rem"
+    width="156.482pxpt"
+    height="36pt"
     viewBox="0 0 442.000000 195.000000"
     preserveAspectRatio="xMidYMid meet"
     ref={ref}

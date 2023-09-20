@@ -18,6 +18,7 @@ export const DropDownMenuItem = <T extends ElementType = 'div'>({
   icon,
   onSelect,
   as,
+  className,
   ...rest
 }: DropDownMenuItemType<T>) => {
   const onSelectHandler = (e: Event) => {
