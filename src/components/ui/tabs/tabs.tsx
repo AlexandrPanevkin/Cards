@@ -1,6 +1,7 @@
-import { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { ComponentPropsWithoutRef, FC, ReactNode } from 'react'
 
 import * as TabsRadix from '@radix-ui/react-tabs'
+import { clsx } from 'clsx'
 
 import { Typography } from '../typography'
 
@@ -18,22 +19,56 @@ export type TabSwitcherProps = {
   value?: string
   defaultValue?: string
   children?: ReactNode
+  className?: string
 } & ComponentPropsWithoutRef<typeof TabsRadix.Root>
 
-export const TabSwitcher = ({ label, children, tabs, defaultValue, value }: TabSwitcherProps) => {
+export const TabSwitcher = ({
+  label,
+  children,
+  className,
+  tabs,
+  defaultValue,
+  value,
+}: TabSwitcherProps) => {
+  const classNames = {
+    root: clsx(s.root, className),
+    trigger: clsx(s.trigger),
+  }
+
   return (
-    <div className={s.container}>
+    <div className={classNames.root}>
       <Typography variant={'body2'}>{label}</Typography>
-      <TabsRadix.Root defaultValue={defaultValue}>
-        <TabsRadix.List>
+      <TabsRadix.Root value={value} defaultValue={defaultValue}>
+        <TabsRadix.List className={s.list}>
           {tabs.map(tab => (
-            <TabsRadix.Trigger key={tab.value} value={tab.value}>
+            <Trigger
+              disabled={tab.disabled}
+              className={classNames.trigger}
+              key={tab.value}
+              value={tab.value}
+            >
               <Typography variant={'body1'}>{tab.title}</Typography>
-            </TabsRadix.Trigger>
+            </Trigger>
           ))}
         </TabsRadix.List>
         {children}
       </TabsRadix.Root>
     </div>
+  )
+}
+
+type TriggerPropsType = {
+  className?: string
+  children: ReactNode
+  disabled?: boolean
+  value: string
+}
+const Trigger: FC<TriggerPropsType> = props => {
+  const { className, children, value, disabled } = props
+
+  return (
+    <TabsRadix.Trigger asChild className={className} value={value} disabled={disabled}>
+      {children}
+    </TabsRadix.Trigger>
   )
 }

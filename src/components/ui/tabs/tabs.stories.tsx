@@ -21,3 +21,14 @@ export const Default: Story = {
     defaultValue: 'Tab1',
   },
 }
+
+export const Disabled = {
+  args: {
+    tabs: [
+      { value: 'Tab1', title: 'my decks' },
+      { value: 'Tab2', title: 'decks' },
+      { value: 'Tab3', title: 'all decks', disabled: true },
+    ],
+    defaultValue: 'Tab1',
+  },
+}
