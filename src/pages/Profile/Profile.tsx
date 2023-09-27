@@ -1,4 +1,4 @@
-import { EditProfile } from '../../components/auth/edit-profile/edit-profile.tsx'
+import { EditProfile } from '../../components/auth/edit-profile'
 import { useMeQuery } from '../../services/auth/auth.api.ts'
 
 export const Profile = () => {
