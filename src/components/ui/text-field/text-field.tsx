@@ -3,11 +3,11 @@ import { ComponentPropsWithoutRef, useState } from 'react'
 
 import { clsx } from 'clsx'
 
+import { CloseIcon } from '../../../assets/icons/CloseIcon.tsx'
 import { Typography } from '../typography'
 
 import { CloseEye } from './icons/CloseEye.tsx'
 // import { CloseIcon } from './icons/CloseIcon.tsx'
-import { CloseIcon } from './icons/CloseIcon.tsx'
 import { Eye } from './icons/Eye.tsx'
 import { Search } from './icons/Search.tsx'
 import s from './text-field.module.scss'
