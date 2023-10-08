@@ -6,16 +6,16 @@ import * as SelectRadix from '@radix-ui/react-select'
 import s from './select.module.scss'
 
 type SelectPropsType = {
-  className: string
+  className?: string
   options?: number[]
   value?: number
-  onChangeValue: (value: number) => void
+  onChangeValue?: (value: number) => void
 }
 
 export const Select = ({ options, value, onChangeValue, className }: SelectPropsType) => {
   const [open, setOpen] = useState(false)
   const onChangeSelect = (value: string) => {
-    onChangeValue(+value)
+    onChangeValue?.(+value)
   }
 
   return (

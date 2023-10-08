@@ -1,6 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
 
 import { Button } from '../button'
+import { Checkbox } from '../checkbox'
+import { Select } from '../select'
 import { TextField } from '../text-field'
 import { Typography } from '../typography'
 
@@ -41,6 +43,57 @@ export const Default: Story = {
           </Button>
         </Modal.Footer>
       </>
+    ),
+  },
+}
+
+export const Header: Story = {
+  args: {
+    title: 'Header Only',
+  },
+}
+
+export const Body: Story = {
+  args: {
+    children: (
+      <Modal.Body>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+        labore et dolore magna aliqua. Ut enim ad minim veniamdsa
+      </Modal.Body>
+    ),
+  },
+}
+
+export const Body_variant: Story = {
+  args: {
+    children: (
+      <Modal.Body>
+        <Select options={[1, 2, 3, 4]} />
+        <TextField label={'input'} />
+        <TextField label={'input'} />
+        <Checkbox label={'Check-box'} />
+      </Modal.Body>
+    ),
+  },
+}
+
+export const Footer_One_Button: Story = {
+  args: {
+    children: (
+      <Modal.Footer>
+        <Button variant={'primary'}>Primary</Button>
+      </Modal.Footer>
+    ),
+  },
+}
+
+export const Footer_Two_Buttons: Story = {
+  args: {
+    children: (
+      <Modal.Footer>
+        <Button variant={'primary'}>Primary</Button>
+        <Button variant={'secondary'}>Cancel</Button>
+      </Modal.Footer>
     ),
   },
 }
