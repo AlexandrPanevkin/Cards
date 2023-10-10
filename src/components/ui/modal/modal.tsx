@@ -10,7 +10,7 @@ import s from './modal.module.scss'
 export type ModalPropsType = {
   trigger?: ReactNode
   title: string
-  children?: ReactNode
+  children: ReactNode
 }
 
 const Root: FC<ModalPropsType> = ({ trigger, title, children }) => {

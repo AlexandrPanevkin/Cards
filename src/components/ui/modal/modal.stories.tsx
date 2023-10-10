@@ -50,11 +50,13 @@ export const Default: Story = {
 export const Header: Story = {
   args: {
     title: 'Header Only',
+    children: <></>,
   },
 }
 
 export const Body: Story = {
   args: {
+    title: 'Body Only',
     children: (
       <Modal.Body>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -66,6 +68,7 @@ export const Body: Story = {
 
 export const Body_variant: Story = {
   args: {
+    title: 'Body 2',
     children: (
       <Modal.Body>
         <Select options={[1, 2, 3, 4]} />
@@ -79,6 +82,7 @@ export const Body_variant: Story = {
 
 export const Footer_One_Button: Story = {
   args: {
+    title: 'Body 3',
     children: (
       <Modal.Footer>
         <Button variant={'primary'}>Primary</Button>
@@ -89,6 +93,7 @@ export const Footer_One_Button: Story = {
 
 export const Footer_Two_Buttons: Story = {
   args: {
+    title: 'Footer',
     children: (
       <Modal.Footer>
         <Button variant={'primary'}>Primary</Button>
