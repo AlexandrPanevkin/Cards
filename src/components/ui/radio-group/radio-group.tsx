@@ -16,16 +16,18 @@ type RadioGroupPropsType = {
   className?: string
   value?: string
   onChange: (value: string) => void
+  disabled?: boolean
 }
 
-export const RadioGroup = ({ className, items, value, onChange }: RadioGroupPropsType) => {
+export const RadioGroup = ({ items, value, onChange, disabled }: RadioGroupPropsType) => {
   const classNames = {
-    root: clsx(s.root, className),
+    root: clsx(s.root, disabled && s.disabled),
   }
 
   return (
     <form>
       <RadioGroupRadix.Root
+        disabled={disabled}
         className={classNames.root}
         defaultValue="default"
         value={value}
