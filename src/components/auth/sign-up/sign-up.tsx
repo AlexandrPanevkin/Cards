@@ -6,42 +6,37 @@ import { z } from 'zod'
 
 import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
-import { ControlledCheckBox } from '../../ui/controlled/controlled-check-box'
 import { ControlledTextField } from '../../ui/controlled/controlled-text-field'
 import { Typography } from '../../ui/typography'
-import { signInScheme } from '../validation'
+import s from '../sign-up/sign-up.module.scss'
+import { signUpScheme } from '../validation/sign-up-scheme.ts'
 
-import s from './sign-in.module.scss'
+export type SignUpType = z.infer<typeof signUpScheme>
 
-type SignInType = z.infer<typeof signInScheme>
 type SignInPropsType = {
-  onSubmit: (data: SignInType) => void
+  onSubmit: (data: SignUpType) => void
   isSubmitting: boolean
 }
-export const SignIn: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
+
+export const SignUp: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
   const {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<SignInType>({
-    resolver: zodResolver(signInScheme),
-    mode: 'onSubmit',
-    defaultValues: {
-      email: '',
-      password: '',
-      rememberMe: false,
-    },
+  } = useForm<SignUpType>({
+    resolver: zodResolver(signUpScheme),
   })
-  const onSubmitForm = handleSubmit(data => {
-    onSubmit({ email: data.email, password: data.password, rememberMe: data.rememberMe })
-  })
+
+  const onSubmitValue = (data: SignUpType) => {
+    onSubmit(data)
+  }
 
   return (
     <Card>
-      <Typography variant={'large'} className={s.signIn}>
-        Sign In
+      <Typography variant={'large'} className={s.signUp}>
+        Sign Up
       </Typography>
-      <form onSubmit={onSubmitForm}>
+      <form onSubmit={handleSubmit(onSubmitValue)}>
         <ControlledTextField
           name={'email'}
           control={control}
@@ -57,27 +52,25 @@ export const SignIn: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
           type={'password'}
           errorMessage={errors.password?.message}
         />
-        <ControlledCheckBox
-          className={s.rememberMe}
+        <ControlledTextField
+          name={'password'}
           control={control}
-          label={'Remember me'}
-          name={'rememberMe'}
+          label={'Confirm password'}
+          type={'password'}
+          errorMessage={errors.password?.message}
         />
-        <Typography variant={'body2'} className={s.forgotPassword}>
-          Forgot Password?
-        </Typography>
 
         <Button type="submit" fullWidth disabled={isSubmitting}>
-          Sign In
+          Sign Up
         </Button>
       </form>
       <span className={s.formFooter}>
         <Typography variant={'body2'} className={s.questionStyle}>
           {/* eslint-disable-next-line react/no-unescaped-entities */}
-          Don't have an account?
+          Already have an account?
         </Typography>
         <Button variant={'link'} as={'a'} disabled={isSubmitting} className={s.underlineBtn}>
-          Sign Up
+          Sign In
         </Button>
       </span>
     </Card>
