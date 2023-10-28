@@ -8,6 +8,10 @@
   margin-bottom: 1.5rem;
 }
 
+.lastInputMargin {
+  margin-bottom: 3.75rem;
+}
+
 .questionStyle {
   color: var(--color-light-900);
 }
@@ -30,4 +34,12 @@
 
 .rememberMe {
   padding-top: 12px;
+}
+
+.underlineBtn {
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
 }

@@ -76,7 +76,13 @@ export const SignIn: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           Don't have an account?
         </Typography>
-        <Button variant={'link'} as={'a'} disabled={isSubmitting} className={s.underlineBtn}>
+        <Button
+          variant={'link'}
+          as={'a'}
+          href={'/sign-up'}
+          disabled={isSubmitting}
+          className={s.underlineBtn}
+        >
           Sign Up
         </Button>
       </span>

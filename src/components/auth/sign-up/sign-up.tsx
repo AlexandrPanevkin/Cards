@@ -51,13 +51,15 @@ export const SignUp: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
           label={'Password'}
           type={'password'}
           errorMessage={errors.password?.message}
+          className={s.inputMargin}
         />
         <ControlledTextField
-          name={'password'}
+          name={'confirmPassword'}
           control={control}
           label={'Confirm password'}
           type={'password'}
           errorMessage={errors.password?.message}
+          className={s.lastInputMargin}
         />
 
         <Button type="submit" fullWidth disabled={isSubmitting}>
@@ -69,7 +71,13 @@ export const SignUp: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
           {/* eslint-disable-next-line react/no-unescaped-entities */}
           Already have an account?
         </Typography>
-        <Button variant={'link'} as={'a'} disabled={isSubmitting} className={s.underlineBtn}>
+        <Button
+          variant={'link'}
+          as={'a'}
+          href={'/login'}
+          disabled={isSubmitting}
+          className={s.underlineBtn}
+        >
           Sign In
         </Button>
       </span>

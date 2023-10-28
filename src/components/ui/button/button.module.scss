@@ -122,7 +122,7 @@
   &:focus {
     gap: 10px;
     color: var(--color-accent-500);
-    border: 3px solid var(--color-info-700);
+    outline: 2px solid var(--color-info-700);
     border-radius: 20px;
   }
 

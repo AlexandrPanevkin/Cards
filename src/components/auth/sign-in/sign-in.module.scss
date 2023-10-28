@@ -14,6 +14,10 @@
 
 .underlineBtn > span {
   text-decoration: underline;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .forgotPassword {
@@ -30,4 +34,10 @@
 
 .rememberMe {
   padding-top: 12px;
+}
+
+.underlineBtn {
+  &:focus {
+    outline: none;
+  }
 }
