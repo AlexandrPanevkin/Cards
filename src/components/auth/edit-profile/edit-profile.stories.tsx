@@ -6,7 +6,7 @@ import { store } from '../../../services/store.ts'
 import { EditProfile } from './edit-profile.tsx'
 
 const meta = {
-  title: 'Auth/Edit-profile',
+  title: 'Auth/Edit profile',
   component: EditProfile,
   tags: ['autodocs'],
 } satisfies Meta<typeof EditProfile>

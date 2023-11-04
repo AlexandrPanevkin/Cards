@@ -9,7 +9,7 @@ import logOutIcon from './icons/logOut.svg'
 import personIcon from './icons/personOutline.svg'
 
 const meta = {
-  title: 'Components/DropDownMenu',
+  title: 'Components/Drop down menu',
   component: DropDownMenu,
   tags: ['autodocs'],
 } satisfies Meta<typeof DropDownMenu>
