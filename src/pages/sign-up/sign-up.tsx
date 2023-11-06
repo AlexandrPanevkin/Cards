@@ -1,7 +1,7 @@
 import { SignUp } from '../../components/auth/sign-up'
 
 export const SignUpPage = () => {
-  const handleSignUp = (data: any) => {}
+  const handleSignUp = () => {}
 
   return <SignUp onSubmit={handleSignUp} isSubmitting={false} />
 }

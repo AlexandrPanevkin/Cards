@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { Button } from '../../ui/button'
 import { Card } from '../../ui/card'
 import { ControlledTextField } from '../../ui/controlled/controlled-text-field'
 import { Typography } from '../../ui/typography'
@@ -29,8 +30,8 @@ export const ForgotPassword: FC<ForgotPasswordPropsType> = ({ onSubmit }) => {
   })
 
   return (
-    <Card>
-      <Typography variant={'large'} className={s.forgotPassword}>
+    <Card className={s.forgotPassword}>
+      <Typography variant={'large'} className={s.title}>
         Forgot your password?
       </Typography>
       <form onSubmit={onSubmitForm}>
@@ -40,10 +41,19 @@ export const ForgotPassword: FC<ForgotPasswordPropsType> = ({ onSubmit }) => {
           label={'Email'}
           type={'text'}
           errorMessage={errors.email?.message}
-          className={s.inputMargin}
+          className={s.emailInput}
         />
-        <Typography variant={'body2'} className={s.forgotPassword}>
+        <Typography variant={'body2'} className={s.enterEmailText}>
           Enter your email address and we will send you further instructions
+        </Typography>
+        <Button fullWidth className={s.sendInstructions}>
+          <Typography variant="subtitle2">Send Instructions</Typography>
+        </Button>
+        <Typography variant="body2" className={s.rememberPassword}>
+          Did you remember your password?
+        </Typography>
+        <Typography as={'a'} href={'/sign-in'} className={s.link}>
+          Try logging in
         </Typography>
       </form>
     </Card>

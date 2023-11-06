@@ -63,7 +63,7 @@ export const SignUp: FC<SignInPropsType> = ({ onSubmit, isSubmitting }) => {
         />
 
         <Button type="submit" fullWidth disabled={isSubmitting}>
-          Sign Up
+          <Typography variant="subtitle2">Sign Up</Typography>
         </Button>
       </form>
       <span className={s.formFooter}>
