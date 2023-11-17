@@ -55,19 +55,20 @@ export const Decks = () => {
         </Button>
       </div>
       <div className={s.filterContainer}>
-        <TextField type={'search'} placeholder={'Input search'}></TextField>
+        <TextField type={'search'} placeholder={'Input search'} />
         <TabSwitcher label={'Show packs cards'} tabs={tabs} />
+
+        <div className={s.sliderBox}>
+          <Typography variant={'body2'} as={'span'}>
+            Number of cards
+          </Typography>
+          <Slider value={[10, 20]} />
+        </div>
+        <Button variant={'secondary'}>
+          <DeleteIcon />
+          <Typography variant={'subtitle2'}>Clear Filter</Typography>
+        </Button>
       </div>
-      <div className={s.sliderBox}>
-        <Typography variant={'body2'} as={'span'}>
-          Number of cards
-        </Typography>
-        <Slider />
-      </div>
-      <Button variant={'secondary'}>
-        <DeleteIcon />
-        <Typography variant={'subtitle2'}>Clear Filter</Typography>
-      </Button>
     </div>
     // <div>
     //   <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />

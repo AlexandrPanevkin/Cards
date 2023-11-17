@@ -10,4 +10,16 @@
     width: 100%;
     margin-top: 2rem;
   }
+
+  .filterContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 150px;
+    gap: 20px;
+    align-items: end;
+
+    .sliderBox {
+      display: grid;
+      gap: 5px;
+    }
+  }
 }
