@@ -1,13 +1,19 @@
 import { useState } from 'react'
 
+import { Tabs } from '@radix-ui/react-tabs'
+
+import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
 import { Button } from '../../components/ui/button'
+import { Slider } from '../../components/ui/slider'
 import { Table } from '../../components/ui/table'
+import { TabSwitcher } from '../../components/ui/tabs'
 import { TextField } from '../../components/ui/text-field'
 import { Typography } from '../../components/ui/typography'
 import { useCreateDeckMutation, useGetDecksQuery } from '../../services/decks'
 import { decksSlice } from '../../services/decks/decks.slice.ts'
 import { useAppDispatch, useAppSelector } from '../../services/store.ts'
 
+import { tabs } from './data/tabs.ts'
 import s from './decks.module.scss'
 
 export const Decks = () => {
@@ -48,6 +54,20 @@ export const Decks = () => {
           </Typography>
         </Button>
       </div>
+      <div className={s.filterContainer}>
+        <TextField type={'search'} placeholder={'Input search'}></TextField>
+        <TabSwitcher label={'Show packs cards'} tabs={tabs} />
+      </div>
+      <div className={s.sliderBox}>
+        <Typography variant={'body2'} as={'span'}>
+          Number of cards
+        </Typography>
+        <Slider />
+      </div>
+      <Button variant={'secondary'}>
+        <DeleteIcon />
+        <Typography variant={'subtitle2'}>Clear Filter</Typography>
+      </Button>
     </div>
     // <div>
     //   <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />
