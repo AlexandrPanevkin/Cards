@@ -1,5 +1,10 @@
 .root {
   display: flex;
+  flex-direction: column;
+
+  .tabs {
+    margin-bottom: 5px;
+  }
 
   .list {
     display: flex;
@@ -8,6 +13,7 @@
       cursor: pointer;
       user-select: none;
 
+      margin: 0;
       padding: 6px 24px;
 
       color: var(--color-light-100);

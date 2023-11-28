@@ -37,7 +37,9 @@ export const TabSwitcher = ({
 
   return (
     <div className={classNames.root}>
-      <Typography variant={'body2'}>{label}</Typography>
+      <Typography className={s.tabs} as={'span'} variant={'body2'}>
+        {label}
+      </Typography>
       <TabsRadix.Root value={value} defaultValue={defaultValue}>
         <TabsRadix.List className={s.list}>
           {tabs.map(tab => (
