@@ -1,5 +1,3 @@
-import { current } from '@reduxjs/toolkit'
-
 import { CreateDeckArgs, Deck, DecksResponse, GetDecksArgs } from '../../pages/decks/types.ts'
 import { baseApi } from '../base-api.ts'
 import { RootState } from '../store.ts'
@@ -44,7 +42,6 @@ const decksApi = baseApi.injectEndpoints({
                 draft => {
                   draft.items.pop()
                   draft.items.unshift(res.data)
-                  console.log(current(draft))
                 }
               )
             )
