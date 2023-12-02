@@ -7,26 +7,29 @@ import { TabSwitcher } from '../../components/ui/tabs'
 import { TextField } from '../../components/ui/text-field'
 import { Typography } from '../../components/ui/typography'
 import { useGetDecksQuery } from '../../services/decks'
+import { decksSlice } from '../../services/decks/decks.slice.ts'
+import { useAppDispatch, useAppSelector } from '../../services/store.ts'
 
 import { tabs } from './data/tabs.ts'
 import s from './decks.module.scss'
 
 export const Decks = () => {
   // const [cardName, setCardName] = useState('')
-  // const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch()
   // const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
   // const currentPage = useAppSelector(state => state.decksSlice.currentPage)
-  // const searchByName = useAppSelector(state => state.decksSlice.searchByName)
+  const searchByName = useAppSelector(state => state.decksSlice.searchByName)
   // const orderBy = useAppSelector(state => state.decksSlice.orderBy)
   //
   // const setItemsPerPage = (itemsPerPage: number) =>
   //   dispatch(decksSlice.actions.setItemsPerPage(itemsPerPage))
   // const setCurrentPage = (currentPage: number) =>
   //   dispatch(decksSlice.actions.setCurrentPage(currentPage))
-  // const setSearch = (searchValue: string) =>
-  //   dispatch(decksSlice.actions.setSearchByName(searchValue))
+  const setSearchByName = (searchName: string) => {
+    dispatch(decksSlice.actions.setSearchByName(searchName))
+  }
   //
-  const { data } = useGetDecksQuery({})
+  const { data } = useGetDecksQuery({ name: searchByName })
   //
   // const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
   //
@@ -45,7 +48,12 @@ export const Decks = () => {
         </Button>
       </div>
       <div className={s.filterContainer}>
-        <TextField type={'search'} placeholder={'Input search'} />
+        <TextField
+          onChangeValue={setSearchByName}
+          value={searchByName}
+          type={'search'}
+          placeholder={'Input search'}
+        />
         <TabSwitcher label={'Show packs cards'} tabs={tabs} />
 
         <div className={s.sliderBox}>
@@ -56,7 +64,7 @@ export const Decks = () => {
         </div>
         <Button variant={'secondary'}>
           <DeleteIcon />
-          <Typography variant={'subtitle2'}>Clear Filter</Typography>
+          <Typography variant={'subtitle2'}>Clear filter </Typography>
         </Button>
       </div>
       <div className={s.table}>
