@@ -13,16 +13,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 100%;
 
     .logo {
       height: 100%;
-      margin-left: 7.5rem;
-      color: var(--color-dark-100);
-      background-color: #fff;
+      margin-left: 7.6rem;
 
-      &:hover {
-        transform: translateY(2px);
-      }
+      color: var(--color-dark-100);
+
+      background-color: #fff;
+      border: 0;
     }
   }
 
