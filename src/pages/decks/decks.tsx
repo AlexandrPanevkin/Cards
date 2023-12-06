@@ -1,5 +1,6 @@
 import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
 import { Button } from '../../components/ui/button'
+import { Pagination } from '../../components/ui/pagination'
 import { Slider } from '../../components/ui/slider'
 import { Table } from '../../components/ui/table'
 import { TabSwitcher } from '../../components/ui/tabs'
@@ -58,7 +59,7 @@ export const Decks = () => {
           <Typography variant={'subtitle2'}>Clear Filter</Typography>
         </Button>
       </div>
-      <div>
+      <div className={s.table}>
         <Table.Root>
           <Table.Head>
             <Table.Row>
@@ -80,6 +81,7 @@ export const Decks = () => {
           </Table.Head>
         </Table.Root>
       </div>
+      <Pagination count={10} page={1} onChange={() => {}} />
     </div>
     // <div>
     //   <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />
