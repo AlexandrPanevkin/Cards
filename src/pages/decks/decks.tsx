@@ -1,7 +1,3 @@
-import { useState } from 'react'
-
-import { Tabs } from '@radix-ui/react-tabs'
-
 import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
 import { Button } from '../../components/ui/button'
 import { Slider } from '../../components/ui/slider'
@@ -9,9 +5,7 @@ import { Table } from '../../components/ui/table'
 import { TabSwitcher } from '../../components/ui/tabs'
 import { TextField } from '../../components/ui/text-field'
 import { Typography } from '../../components/ui/typography'
-import { useCreateDeckMutation, useGetDecksQuery } from '../../services/decks'
-import { decksSlice } from '../../services/decks/decks.slice.ts'
-import { useAppDispatch, useAppSelector } from '../../services/store.ts'
+import { useGetDecksQuery } from '../../services/decks'
 
 import { tabs } from './data/tabs.ts'
 import s from './decks.module.scss'
@@ -31,12 +25,7 @@ export const Decks = () => {
   // const setSearch = (searchValue: string) =>
   //   dispatch(decksSlice.actions.setSearchByName(searchValue))
   //
-  // const { currentData: data, isLoading } = useGetDecksQuery({
-  //   itemsPerPage,
-  //   currentPage,
-  //   name: searchByName,
-  //   orderBy,
-  // })
+  const { data } = useGetDecksQuery({})
   //
   // const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
   //
@@ -69,6 +58,28 @@ export const Decks = () => {
           <Typography variant={'subtitle2'}>Clear Filter</Typography>
         </Button>
       </div>
+      <div>
+        <Table.Root>
+          <Table.Head>
+            <Table.Row>
+              <Table.HeadCell>Name</Table.HeadCell>
+              <Table.HeadCell>Cards</Table.HeadCell>
+              <Table.HeadCell>Last updated</Table.HeadCell>
+              <Table.HeadCell>Created by</Table.HeadCell>
+            </Table.Row>
+            {data?.items.map(deck => {
+              return (
+                <Table.Row key={deck.id}>
+                  <Table.Cell>{deck.name}</Table.Cell>
+                  <Table.Cell>{deck.cardsCount}</Table.Cell>
+                  <Table.Cell>{new Date(deck.updated).toLocaleDateString('ru-Ru')}</Table.Cell>
+                  <Table.Cell>{deck.author.name}</Table.Cell>
+                </Table.Row>
+              )
+            })}
+          </Table.Head>
+        </Table.Root>
+      </div>
     </div>
     // <div>
     //   <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />
@@ -90,26 +101,6 @@ export const Decks = () => {
     //   />
     //   <Button onClick={handlerCreateClicked}>Create Deck</Button>
     //   isCreateDeckLoading: {isCreateLoading.toString()}
-    //   <Table.Root>
-    //     <Table.Head>
-    //       <Table.Row>
-    //         <Table.HeadCell>Name</Table.HeadCell>
-    //         <Table.HeadCell>Cards</Table.HeadCell>
-    //         <Table.HeadCell>Last updated</Table.HeadCell>
-    //         <Table.HeadCell>Created by</Table.HeadCell>
-    //       </Table.Row>
-    //       {data?.items.map(deck => {
-    //         return (
-    //           <Table.Row key={deck.id}>
-    //             <Table.Cell>{deck.name}</Table.Cell>
-    //             <Table.Cell>{deck.cardsCount}</Table.Cell>
-    //             <Table.Cell>{new Date(deck.updated).toLocaleDateString('ru-Ru')}</Table.Cell>
-    //             <Table.Cell>{deck.author.name}</Table.Cell>
-    //           </Table.Row>
-    //         )
-    //       })}
-    //     </Table.Head>
-    //   </Table.Root>
     //     </div>
   )
 }
