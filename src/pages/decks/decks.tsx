@@ -1,3 +1,5 @@
+import { useDebounce } from 'usehooks-ts'
+
 import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
 import { Button } from '../../components/ui/button'
 import { Pagination } from '../../components/ui/pagination'
@@ -19,6 +21,7 @@ export const Decks = () => {
   // const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
   // const currentPage = useAppSelector(state => state.decksSlice.currentPage)
   const searchByName = useAppSelector(state => state.decksSlice.searchByName)
+  const debounceSearchByName = useDebounce<string>(searchByName, 300)
   // const orderBy = useAppSelector(state => state.decksSlice.orderBy)
   //
   // const setItemsPerPage = (itemsPerPage: number) =>
@@ -29,7 +32,7 @@ export const Decks = () => {
     dispatch(decksSlice.actions.setSearchByName(searchName))
   }
   //
-  const { data } = useGetDecksQuery({ name: searchByName })
+  const { data } = useGetDecksQuery({ name: debounceSearchByName })
   //
   // const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
   //
