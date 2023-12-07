@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { useDebounce } from 'usehooks-ts'
 
 import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
@@ -12,17 +14,20 @@ import { useGetDecksQuery } from '../../services/decks'
 import { decksSlice } from '../../services/decks/decks.slice.ts'
 import { useAppDispatch, useAppSelector } from '../../services/store.ts'
 
+import { columns } from './data/columns.ts'
 import { tabs } from './data/tabs.ts'
 import s from './decks.module.scss'
+import { Sort } from './types.ts'
 
 export const Decks = () => {
   // const [cardName, setCardName] = useState('')
+  const [sort, setSort] = useState<Sort>({ key: 'updated', direction: 'asc' })
+  const sortString = sort ? `${sort.key}-${sort.direction}` : null
   const dispatch = useAppDispatch()
   // const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
   // const currentPage = useAppSelector(state => state.decksSlice.currentPage)
   const searchByName = useAppSelector(state => state.decksSlice.searchByName)
   const debounceSearchByName = useDebounce<string>(searchByName, 300)
-  // const orderBy = useAppSelector(state => state.decksSlice.orderBy)
   //
   // const setItemsPerPage = (itemsPerPage: number) =>
   //   dispatch(decksSlice.actions.setItemsPerPage(itemsPerPage))
@@ -32,7 +37,7 @@ export const Decks = () => {
     dispatch(decksSlice.actions.setSearchByName(searchName))
   }
   //
-  const { data } = useGetDecksQuery({ name: debounceSearchByName })
+  const { data } = useGetDecksQuery({ name: debounceSearchByName, orderBy: sortString ?? '' })
   //
   // const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
   //
@@ -72,13 +77,8 @@ export const Decks = () => {
       </div>
       <div className={s.table}>
         <Table.Root>
-          <Table.Head>
-            <Table.Row>
-              <Table.HeadCell>Name</Table.HeadCell>
-              <Table.HeadCell>Cards</Table.HeadCell>
-              <Table.HeadCell>Last updated</Table.HeadCell>
-              <Table.HeadCell>Created by</Table.HeadCell>
-            </Table.Row>
+          <Table.Header sort={sort} onSort={setSort} columns={columns} />
+          <Table.Body>
             {data?.items.map(deck => {
               return (
                 <Table.Row key={deck.id}>
@@ -89,7 +89,7 @@ export const Decks = () => {
                 </Table.Row>
               )
             })}
-          </Table.Head>
+          </Table.Body>
         </Table.Root>
       </div>
       <Pagination count={10} page={1} onChange={() => {}} />
@@ -106,7 +106,6 @@ export const Decks = () => {
     //     <Button onClick={() => setCurrentPage(2)}>SetCurrentPage 2</Button>
     //     <Button onClick={() => setCurrentPage(3)}>SetCurrentPage 3</Button>
     //   </div>
-    //   <TextField value={searchByName} onChange={e => setSearch(e.currentTarget.value)} />
     //   <TextField
     //     label={'set card name'}
     //     value={cardName}

@@ -20,5 +20,8 @@ export const decksSlice = createSlice({
     setSearchByName: (state, action: PayloadAction<string>) => {
       state.searchByName = action.payload
     },
+    setOrderBy: (state, action: PayloadAction<string>) => {
+      state.orderBy = action.payload
+    },
   },
 })

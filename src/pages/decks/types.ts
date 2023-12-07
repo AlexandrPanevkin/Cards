@@ -38,3 +38,8 @@ export type GetDecksArgs = {
 export type CreateDeckArgs = {
   name: string
 }
+
+export type Sort = {
+  key: string
+  direction: 'asc' | 'desc'
+} | null
