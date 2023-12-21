@@ -24,20 +24,25 @@ export const Decks = () => {
   const [sort, setSort] = useState<Sort>({ key: 'updated', direction: 'asc' })
   const sortString = sort ? `${sort.key}-${sort.direction}` : null
   const dispatch = useAppDispatch()
-  // const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
-  // const currentPage = useAppSelector(state => state.decksSlice.currentPage)
+  const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
+  const currentPage = useAppSelector(state => state.decksSlice.currentPage)
   const searchByName = useAppSelector(state => state.decksSlice.searchByName)
   const debounceSearchByName = useDebounce<string>(searchByName, 300)
-  //
-  // const setItemsPerPage = (itemsPerPage: number) =>
-  //   dispatch(decksSlice.actions.setItemsPerPage(itemsPerPage))
-  // const setCurrentPage = (currentPage: number) =>
-  //   dispatch(decksSlice.actions.setCurrentPage(currentPage))
+
+  const setItemsPerPage = (itemsPerPage: number) =>
+    dispatch(decksSlice.actions.setItemsPerPage(itemsPerPage))
+  const setCurrentPage = (currentPage: number) =>
+    dispatch(decksSlice.actions.setCurrentPage(currentPage))
   const setSearchByName = (searchName: string) => {
     dispatch(decksSlice.actions.setSearchByName(searchName))
   }
   //
-  const { data } = useGetDecksQuery({ name: debounceSearchByName, orderBy: sortString ?? '' })
+  const { data } = useGetDecksQuery({
+    name: debounceSearchByName,
+    orderBy: sortString ?? '',
+    currentPage,
+    itemsPerPage,
+  })
   //
   // const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
   //
@@ -92,7 +97,14 @@ export const Decks = () => {
           </Table.Body>
         </Table.Root>
       </div>
-      <Pagination count={10} page={1} onChange={() => {}} />
+      <Pagination
+        count={data ? data.pagination.totalPages : 1}
+        page={currentPage}
+        onChange={setCurrentPage}
+        perPageOptions={[10, 20, 30]}
+        perPage={itemsPerPage}
+        onPerPageChange={setItemsPerPage}
+      />
     </div>
     // <div>
     //   <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />
