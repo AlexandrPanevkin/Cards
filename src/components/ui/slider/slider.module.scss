@@ -5,65 +5,66 @@
   justify-content: center;
 
   width: 100%;
-}
 
-.sliderRoot {
-  touch-action: none;
-  user-select: none;
+  .sliderRoot {
+    touch-action: none;
+    user-select: none;
 
-  position: relative;
+    position: relative;
 
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 
-  width: 100%;
-}
+    width: 100%;
 
-.sliderTrack {
-  position: relative;
+    .sliderTrack {
+      position: relative;
 
-  flex-grow: 1;
+      flex-grow: 1;
 
-  height: 3px;
+      height: 3px;
 
-  background-color: var(--color-accent-900);
-  border-radius: 2px;
-}
+      background-color: var(--color-accent-900);
+      border-radius: 2px;
 
-.sliderRange {
-  position: absolute;
+      .sliderRange {
+        position: absolute;
 
-  height: 100%;
+        height: 100%;
 
-  opacity: 0.5;
-  background-color: var(--color-accent-500);
-  border-radius: 9999px;
-}
+        opacity: 0.5;
+        background-color: var(--color-accent-500);
+        border-radius: 999rem;
+      }
+    }
 
-.sliderThumb {
-  touch-action: pan-x;
-  cursor: pointer;
+    .sliderThumb {
+      touch-action: pan-x;
+      cursor: pointer;
 
-  display: block;
+      display: block;
 
-  width: 16px;
-  height: 16px;
+      width: 0.6rem;
+      height: 0.6rem;
 
-  background-color: var(--color-light-100);
-  border-radius: 9999px;
+      background-color: var(--color-light-100);
+      border-radius: 9999px;
+      box-shadow: 0 0 0 0.25rem var(--color-accent-500);
 
-  transition: transform 0.2s ease-in-out;
-}
+      transition: transform 0.2s ease-in-out;
+    }
+  }
 
-.value {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  min-width: 2.25rem;
-  height: 2.25rem;
-  padding: 6px 8px;
+    min-width: 2.25rem;
+    height: 2.25rem;
+    padding: 6px 8px;
 
-  border: 2px solid var(--color-dark-300);
-  border-radius: 2px;
+    border: 2px solid var(--color-dark-300);
+    border-radius: 2px;
+  }
 }
