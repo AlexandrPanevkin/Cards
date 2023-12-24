@@ -1,5 +1,7 @@
 import { FC, useState } from 'react'
 
+import lightPencil from '../../../assets/icons/lightPencil.svg'
+import logout from '../../../assets/icons/logout.svg'
 import { useLogoutMutation, useUpdateMeMutation } from '../../../services/auth/auth.api.ts'
 import { UserType } from '../../../services/auth/types.ts'
 import { Button } from '../../ui/button'
@@ -8,8 +10,6 @@ import { Typography } from '../../ui/typography'
 
 import { EditName } from './edit-name/edit-name.tsx'
 import s from './edit-profile.module.scss'
-import lightPencil from './icons/lightPencil.svg'
-import logout from './icons/logout.svg'
 import { ReplaceAvatar } from './replace-avatar/replace-avatar.tsx'
 
 type EditProfileType = {

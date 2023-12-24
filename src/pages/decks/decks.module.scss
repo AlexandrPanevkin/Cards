@@ -25,5 +25,18 @@
 
   .table {
     padding: 2.25rem 0;
+
+    .actions {
+      cursor: pointer;
+
+      display: flex;
+      flex-direction: row;
+      column-gap: 0.62rem;
+      align-items: center;
+
+      &:hover {
+        color: var(--color-accent-500);
+      }
+    }
   }
 }

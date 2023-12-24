@@ -1,7 +1,7 @@
 import { ChangeEvent, FC } from 'react'
 
+import { DarkPensil } from '../../../../assets/icons/darkPensil.tsx'
 import { Avatar } from '../../../ui/avatar'
-import { DarkPensil } from '../icons/darkPensil.tsx'
 
 import s from './replace-avatar.module.scss'
 

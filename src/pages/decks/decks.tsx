@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { useDebounce } from 'usehooks-ts'
 
 import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
+import lightPencil from '../../assets/icons/lightPencil.svg'
+import PlayIcon from '../../assets/icons/PlayIcon.tsx'
 import { Button } from '../../components/ui/button'
 import { Pagination } from '../../components/ui/pagination'
 import { Slider } from '../../components/ui/slider'
@@ -125,6 +127,23 @@ export const Decks = () => {
                   <Table.Cell>{deck.cardsCount}</Table.Cell>
                   <Table.Cell>{new Date(deck.updated).toLocaleDateString('ru-Ru')}</Table.Cell>
                   <Table.Cell>{deck.author.name}</Table.Cell>
+                  <Table.Cell>
+                    <div className={s.actions}>
+                      <button>
+                        <PlayIcon />
+                      </button>
+                      {userData?.id === deck.author.id && (
+                        <>
+                          <button>
+                            <img src={lightPencil} alt={'Light pencil'} />
+                          </button>
+                          <button>
+                            <DeleteIcon />
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </Table.Cell>
                 </Table.Row>
               )
             })}
