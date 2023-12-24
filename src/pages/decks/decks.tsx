@@ -38,6 +38,7 @@ export const Decks = () => {
     dispatch(decksSlice.actions.setCurrentPage(currentPage))
   const setSearchByName = (searchName: string) => {
     dispatch(decksSlice.actions.setSearchByName(searchName))
+    setCurrentPage(1)
   }
 
   const setShown = (owner: string) => {
@@ -47,6 +48,13 @@ export const Decks = () => {
       dispatch(decksSlice.actions.setShowDecks([owner, '']))
     }
     setCurrentPage(1)
+  }
+  const onClearFilter = () => {
+    setCurrentPage(1)
+    setSearchByName('')
+    setShown('All cards')
+    setSliderValue([0, 100])
+    setItemsPerPage(10)
   }
 
   const { data } = useGetDecksQuery({
@@ -64,11 +72,6 @@ export const Decks = () => {
   // const handlerCreateClicked = () => createDeck({ name: cardName })
   //
   // if (isLoading) return <div>Loading...</div>
-
-  // useEffect(() => {
-  //   setSliderValue([0, sliderValue[1]])
-  //   setDebouncedSliderValue([0, sliderValue[1]])
-  // }, [sliderValue[1]])
 
   return (
     <div className={s.container}>
@@ -106,7 +109,7 @@ export const Decks = () => {
             onValueChange={setSliderValue}
           />
         </div>
-        <Button variant={'secondary'}>
+        <Button variant={'secondary'} onClick={onClearFilter}>
           <DeleteIcon />
           <Typography variant={'subtitle2'}>Clear filter </Typography>
         </Button>
@@ -139,15 +142,6 @@ export const Decks = () => {
     </div>
     // <div>
     //   <TextField value={cardName} onChange={e => setCardName(e.currentTarget.value)} />
-    //   <div>
-    //     <Button onClick={() => setItemsPerPage(10)}>ItemsPerPage: 10</Button>
-    //     <Button onClick={() => setItemsPerPage(20)}>ItemsPerPage: 20</Button>
-    //     <Button onClick={() => setItemsPerPage(30)}>ItemsPerPage: 30</Button>
-    //   </div>
-    //   <div>
-    //     <Button onClick={() => setCurrentPage(1)}>SetCurrentPage 1</Button>
-    //     <Button onClick={() => setCurrentPage(2)}>SetCurrentPage 2</Button>
-    //     <Button onClick={() => setCurrentPage(3)}>SetCurrentPage 3</Button>
     //   </div>
     //   <TextField
     //     label={'set card name'}
