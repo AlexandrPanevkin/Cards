@@ -20,6 +20,7 @@ export type TabSwitcherProps = {
   defaultValue?: string
   children?: ReactNode
   className?: string
+  onValueChange: (value: string) => void
 } & ComponentPropsWithoutRef<typeof TabsRadix.Root>
 
 export const TabSwitcher = ({
@@ -29,6 +30,7 @@ export const TabSwitcher = ({
   tabs,
   defaultValue,
   value,
+  onValueChange,
 }: TabSwitcherProps) => {
   const classNames = {
     root: clsx(s.root, className),
@@ -40,7 +42,7 @@ export const TabSwitcher = ({
       <Typography className={s.tabs} as={'span'} variant={'body2'}>
         {label}
       </Typography>
-      <TabsRadix.Root value={value} defaultValue={defaultValue}>
+      <TabsRadix.Root value={value} defaultValue={defaultValue} onValueChange={onValueChange}>
         <TabsRadix.List className={s.list}>
           {tabs.map(tab => (
             <Trigger

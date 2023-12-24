@@ -10,6 +10,7 @@ import { Table } from '../../components/ui/table'
 import { TabSwitcher } from '../../components/ui/tabs'
 import { TextField } from '../../components/ui/text-field'
 import { Typography } from '../../components/ui/typography'
+import { useMeQuery } from '../../services/auth/auth.api.ts'
 import { useGetDecksQuery } from '../../services/decks'
 import { decksSlice } from '../../services/decks/decks.slice.ts'
 import { useAppDispatch, useAppSelector } from '../../services/store.ts'
@@ -20,13 +21,15 @@ import s from './decks.module.scss'
 import { Sort } from './types.ts'
 
 export const Decks = () => {
-  // const [cardName, setCardName] = useState('')
   const [sort, setSort] = useState<Sort>({ key: 'updated', direction: 'asc' })
   const sortString = sort ? `${sort.key}-${sort.direction}` : null
   const dispatch = useAppDispatch()
+  const { data: userData } = useMeQuery()
   const itemsPerPage = useAppSelector(state => state.decksSlice.itemsPerPage)
   const currentPage = useAppSelector(state => state.decksSlice.currentPage)
   const searchByName = useAppSelector(state => state.decksSlice.searchByName)
+  const shownDecks = useAppSelector(state => state.decksSlice.shownDecks)
+  const sliderValue = useAppSelector(state => state.decksSlice.sliderValue)
   const debounceSearchByName = useDebounce<string>(searchByName, 300)
 
   const setItemsPerPage = (itemsPerPage: number) =>
@@ -36,12 +39,28 @@ export const Decks = () => {
   const setSearchByName = (searchName: string) => {
     dispatch(decksSlice.actions.setSearchByName(searchName))
   }
-  //
+
+  const setShown = (owner: string) => {
+    if (owner === 'My cards' && userData) {
+      dispatch(decksSlice.actions.setShowDecks([owner, userData.id]))
+    } else {
+      dispatch(decksSlice.actions.setShowDecks([owner, '']))
+    }
+    setCurrentPage(1)
+  }
+
+  const setSliderValue = (sliderValue: number[]) => {
+    dispatch(decksSlice.actions.setSliderValue(sliderValue))
+  }
+
   const { data } = useGetDecksQuery({
     name: debounceSearchByName,
+    authorId: shownDecks[1],
     orderBy: sortString ?? '',
     currentPage,
     itemsPerPage,
+    minCardsCount: sliderValue[0],
+    maxCardsCount: sliderValue[1],
   })
   //
   // const [createDeck, { isLoading: isCreateLoading }] = useCreateDeckMutation()
@@ -67,13 +86,19 @@ export const Decks = () => {
           type={'search'}
           placeholder={'Input search'}
         />
-        <TabSwitcher label={'Show packs cards'} tabs={tabs} />
+        <TabSwitcher
+          defaultValue={''}
+          label={'Show packs cards'}
+          tabs={tabs}
+          value={shownDecks[0]}
+          onValueChange={setShown}
+        />
 
         <div className={s.sliderBox}>
           <Typography variant={'body2'} as={'span'}>
             Number of cards
           </Typography>
-          <Slider value={[10, 20]} />
+          <Slider value={sliderValue} onValueChange={setSliderValue} />
         </div>
         <Button variant={'secondary'}>
           <DeleteIcon />

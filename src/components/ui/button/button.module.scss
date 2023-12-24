@@ -39,7 +39,7 @@
 
 .secondary {
   display: flex;
-  gap: 5px;
+  gap: 6px;
   align-items: center;
   justify-content: center;
 
@@ -59,7 +59,6 @@
   }
 
   &:focus {
-    gap: 12px;
     border: 2px solid var(--color-info-700);
   }
 
@@ -122,8 +121,8 @@
   &:focus {
     gap: 10px;
     color: var(--color-accent-500);
-    outline: 2px solid var(--color-info-700);
     border-radius: 20px;
+    outline: 2px solid var(--color-info-700);
   }
 
   &.disabled {
