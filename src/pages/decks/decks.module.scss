@@ -34,7 +34,15 @@
       column-gap: 0.62rem;
       align-items: center;
 
-      &:hover {
+      .playIcon:hover {
+        color: var(--color-accent-500);
+      }
+
+      .lightPencil:hover {
+        color: var(--color-accent-500);
+      }
+
+      .deleteIcon:hover {
         color: var(--color-accent-500);
       }
     }
