@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDebounce } from 'usehooks-ts'
 
 import DeleteIcon from '../../assets/icons/DeleteIcon.tsx'
-import lightPencil from '../../assets/icons/lightPencil.svg'
+import LightPencil from '../../assets/icons/LightPencil.tsx'
 import PlayIcon from '../../assets/icons/PlayIcon.tsx'
 import { Button } from '../../components/ui/button'
 import { Pagination } from '../../components/ui/pagination'
@@ -129,15 +129,15 @@ export const Decks = () => {
                   <Table.Cell>{deck.author.name}</Table.Cell>
                   <Table.Cell>
                     <div className={s.actions}>
-                      <button>
+                      <button className={s.playIcon}>
                         <PlayIcon />
                       </button>
                       {userData?.id === deck.author.id && (
                         <>
-                          <button>
-                            <img src={lightPencil} alt={'Light pencil'} />
+                          <button className={s.lightPencil}>
+                            <LightPencil />
                           </button>
-                          <button>
+                          <button className={s.deleteIcon}>
                             <DeleteIcon />
                           </button>
                         </>
