@@ -22,6 +22,7 @@ import { Sort } from './types.ts'
 
 export const Decks = () => {
   const [sort, setSort] = useState<Sort>({ key: 'updated', direction: 'asc' })
+  const [sliderValue, setSliderValue] = useState<[number, number]>([0, 100])
   const sortString = sort ? `${sort.key}-${sort.direction}` : null
   const dispatch = useAppDispatch()
   const { data: userData } = useMeQuery()
@@ -29,7 +30,6 @@ export const Decks = () => {
   const currentPage = useAppSelector(state => state.decksSlice.currentPage)
   const searchByName = useAppSelector(state => state.decksSlice.searchByName)
   const shownDecks = useAppSelector(state => state.decksSlice.shownDecks)
-  const sliderValue = useAppSelector(state => state.decksSlice.sliderValue)
   const debounceSearchByName = useDebounce<string>(searchByName, 300)
 
   const setItemsPerPage = (itemsPerPage: number) =>
@@ -49,10 +49,6 @@ export const Decks = () => {
     setCurrentPage(1)
   }
 
-  const setSliderValue = (sliderValue: number[]) => {
-    dispatch(decksSlice.actions.setSliderValue(sliderValue))
-  }
-
   const { data } = useGetDecksQuery({
     name: debounceSearchByName,
     authorId: shownDecks[1],
@@ -68,6 +64,11 @@ export const Decks = () => {
   // const handlerCreateClicked = () => createDeck({ name: cardName })
   //
   // if (isLoading) return <div>Loading...</div>
+
+  // useEffect(() => {
+  //   setSliderValue([0, sliderValue[1]])
+  //   setDebouncedSliderValue([0, sliderValue[1]])
+  // }, [sliderValue[1]])
 
   return (
     <div className={s.container}>
@@ -98,7 +99,12 @@ export const Decks = () => {
           <Typography variant={'body2'} as={'span'}>
             Number of cards
           </Typography>
-          <Slider value={sliderValue} onValueChange={setSliderValue} />
+          <Slider
+            minValue={sliderValue[0]}
+            maxValue={sliderValue[1]}
+            value={sliderValue}
+            onValueChange={setSliderValue}
+          />
         </div>
         <Button variant={'secondary'}>
           <DeleteIcon />

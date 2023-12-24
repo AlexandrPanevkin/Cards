@@ -6,7 +6,6 @@ const initialState = {
   searchByName: '',
   orderBy: 'created-desc',
   shownDecks: ['All cards'],
-  sliderValue: [0, 20],
 }
 
 export const decksSlice = createSlice({
@@ -27,9 +26,6 @@ export const decksSlice = createSlice({
     },
     setShowDecks: (state, action: PayloadAction<string[]>) => {
       state.shownDecks = action.payload
-    },
-    setSliderValue: (state, action: PayloadAction<number[]>) => {
-      state.sliderValue = action.payload
     },
   },
 })
