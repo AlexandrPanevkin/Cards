@@ -36,14 +36,17 @@
 
       .playIcon:hover {
         color: var(--color-accent-500);
+        transition: 350ms all;
       }
 
       .lightPencil:hover {
         color: var(--color-accent-500);
+        transition: 350ms all;
       }
 
       .deleteIcon:hover {
         color: var(--color-accent-500);
+        transition: 350ms all;
       }
     }
   }
